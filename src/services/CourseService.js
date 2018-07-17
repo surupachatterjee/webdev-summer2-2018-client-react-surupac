@@ -1,7 +1,7 @@
 let _singleton = Symbol();
 
-const COURSE_API_URL ="https://course-management-stc.herokuapp.com/api/course";
-//const COURSE_API_URL ="http://localhost:8080/api/course";
+//const COURSE_API_URL ="https://course-management-stc.herokuapp.com/api/course";
+const COURSE_API_URL ="http://localhost:8080/api/course";
 
 
 class CourseService {
@@ -23,6 +23,30 @@ class CourseService {
                 return response.json();
             });
     }
+
+
+    createCourse(course)
+    {
+        return fetch(COURSE_API_URL ,{
+            body:JSON.stringify(course),
+            headers:{
+                'Content-Type':'application/json'
+            },
+            method:'POST'
+        }).then(function (response) {
+            return response.json();
+        })
+    }
+
+    deleteCourse(courseId) {
+        console.log('delete ' + courseId);
+        return fetch(COURSE_API_URL + '/' + courseId, {
+            method: 'DELETE'
+        })
+    }
+
+
+
 
 
 

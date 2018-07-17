@@ -12,6 +12,11 @@ render(){
     return(
         <tr>
             <td>{this.props.course.title}</td>
+            <td><button
+                onClick={() =>
+                {this.props.delete(this.props.course.id)}}>
+                Delete
+            </button></td>
         </tr>
     )
 }
