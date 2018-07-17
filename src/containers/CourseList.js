@@ -54,8 +54,15 @@ class CourseList extends React.Component {
         return (
             <div>
                 <h2>Course List</h2>
-                <table className="table">
+                <table className="table table-dark">
                     <thead>
+
+                    <tr>
+                        <th> Course Title</th>
+                        <th>Owned By</th>
+                        <th>Last Modified By</th>
+
+                    </tr>
 
                     <tr>
                         <th><input id="titleFld"
@@ -68,12 +75,6 @@ class CourseList extends React.Component {
                         <th>
                             <button onClick={this.createCourse}>Add</button>
                         </th>
-                    </tr>
-                    <tr>
-                        <th>Title</th>
-                        <th>Owned By</th>
-                        <th>Last Modified By</th>
-
                     </tr>
 
                     </thead>
