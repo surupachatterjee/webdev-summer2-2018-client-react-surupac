@@ -25,7 +25,25 @@ class CourseService {
     }
 
 
+    createCourse(course)
+    {
+        return fetch(COURSE_API_URL ,{
+            body:JSON.stringify(course),
+            headers:{
+                'Content-Type':'application/json'
+            },
+            method:'POST'
+        }).then(function (response) {
+            return response.json();
+        })
+    }
 
+    deleteCourse(courseId) {
+        console.log('delete ' +courseId);
+        return fetch(COURSE_API_URL + '/'+ courseId,{
+            method:'DELETE'
+        })
+    }
 }
 
 export default CourseService;

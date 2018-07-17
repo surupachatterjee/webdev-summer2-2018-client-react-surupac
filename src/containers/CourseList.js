@@ -8,17 +8,45 @@ class CourseList extends React.Component {
     constructor() {
         super();
         this.courseService = CourseService.instance;
-        this.state = {courses:[]};
-
+        this.state = {courses: []};
+        this.titleChanged = this.titleChanged.bind(this);
+        this.createCourse = this.createCourse.bind(this);
+        this.deleteCourse = this.deleteCourse.bind(this);
 
     }
 
-    componentDidMount()
-    {
+    componentDidMount() {
+        this.findAllCourses();
+    }
+
+    deleteCourse(courseId) {
+        console.log('delete' + courseId);
+        this.courseService
+            .deleteCourse(courseId);
+        this.findAllCourses();
+    }
+
+    findAllCourses() {
         this.courseService.findAllCourses()
-            .then(courses =>
-            {
-                this.setState({courses : courses});
+            .then(courses => {
+                this.setState({courses: courses});
+                console.log(courses);
+            });
+
+    }
+
+    titleChanged(event) {
+        this.setState({
+            course: {title: event.target.value}
+        })
+    }
+
+    createCourse() {
+        console.log(this.state.course);
+        this.courseService
+            .createCourse(this.state.course)
+            .then(() => {
+                this.findAllCourses();
             });
     }
 
@@ -26,14 +54,29 @@ class CourseList extends React.Component {
         return (
             <div>
                 <h2>Course List</h2>
-                <table className="table">
+                <table className="table table-dark">
                     <thead>
+
                     <tr>
-                        <th>Title</th>
+                        <th> Course Title</th>
                         <th>Owned By</th>
                         <th>Last Modified By</th>
 
                     </tr>
+
+                    <tr>
+                        <th><input id="titleFld"
+                                   onChange={this.titleChanged}
+                                   placeholder="cs101"/>
+                        </th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>
+                            <button onClick={this.createCourse}>Add</button>
+                        </th>
+                    </tr>
+
                     </thead>
                     <tbody>
                     {this.courseRows()}
@@ -44,9 +87,11 @@ class CourseList extends React.Component {
     }
 
     courseRows() {
-        var rows = this.state.courses.map(function(course) {
-            return <CourseRow  key={course.id}
-                course={course}/>
+        var rows = this.state.courses.map((course) =>
+        {
+            return <CourseRow key={course.id}
+                              course={course}
+                              delete={this.deleteCourse}/>
         });
         return (rows)
     }
