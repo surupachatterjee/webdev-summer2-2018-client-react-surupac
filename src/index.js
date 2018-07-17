@@ -1,16 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
+import '../node_modules/font-awesome/css/font-awesome.min.css';
+import WhiteBoard from "./containers/WhiteBoard";
 
 
-class HelloWorld extends React.Component{
-    render(){
-        return (<h1>Hello World 123!!!!</h1>)
-    }
-
-
-}
 
 ReactDOM.render(
-    <HelloWorld/>,
+    <WhiteBoard/>,
     document.getElementById('root')
 );
