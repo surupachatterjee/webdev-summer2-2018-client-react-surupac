@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 class CourseRow extends React.Component
 {
@@ -14,7 +15,12 @@ render(){
             <td>{this.props.course.title}</td>
             <td></td>
             <td></td>
-            <td></td>
+            <td>
+                <Link to=
+                          {`/course/${this.props.course.id}/edit`}>
+                    {this.props.course.title}
+                </Link>
+            </td>
             <td><button
                 onClick={() =>
                 {this.props.delete(this.props.course.id)}}>
