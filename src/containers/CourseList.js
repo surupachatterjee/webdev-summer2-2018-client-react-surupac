@@ -22,8 +22,9 @@ class CourseList extends React.Component {
     deleteCourse(courseId) {
         console.log('delete' + courseId);
         this.courseService
-            .deleteCourse(courseId);
-        this.findAllCourses();
+            .deleteCourse(courseId)
+            .then(() => this.findAllCourses());
+
     }
 
     findAllCourses() {
@@ -57,6 +58,8 @@ class CourseList extends React.Component {
                 <table className="table table-dark">
                     <thead>
 
+
+
                     <tr>
                         <th> Course Title</th>
                         <th>Owned By</th>
@@ -67,13 +70,13 @@ class CourseList extends React.Component {
                     <tr>
                         <th><input id="titleFld"
                                    onChange={this.titleChanged}
-                                   placeholder="cs101"/>
+                                   placeholder="New Course Title"/>
                         </th>
                         <th></th>
                         <th></th>
                         <th></th>
                         <th>
-                            <button onClick={this.createCourse}>Add</button>
+                            <button className="fa-2x fa fa-plus" onClick={this.createCourse}></button>
                         </th>
                     </tr>
 

@@ -27,9 +27,9 @@ render(){
                 </Link>
             </td>*/}
             <td><button
+                className="fa-2x fa fa-times"
                 onClick={() =>
                 {this.props.delete(this.props.course.id)}}>
-                Delete
             </button></td>
         </tr>
     )
