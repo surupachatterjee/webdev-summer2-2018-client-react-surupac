@@ -55,20 +55,24 @@ class CourseList extends React.Component {
                 <h2>Course List</h2>
                 <table className="table">
                     <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Owned By</th>
-                        <th>Last Modified By</th>
 
-                    </tr>
                     <tr>
                         <th><input id="titleFld"
                                    onChange={this.titleChanged}
                                    placeholder="cs101"/>
                         </th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                         <th>
                             <button onClick={this.createCourse}>Add</button>
                         </th>
+                    </tr>
+                    <tr>
+                        <th>Title</th>
+                        <th>Owned By</th>
+                        <th>Last Modified By</th>
+
                     </tr>
 
                     </thead>
