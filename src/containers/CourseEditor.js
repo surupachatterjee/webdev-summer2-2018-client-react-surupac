@@ -1,41 +1,39 @@
-import React from 'react';
+import React from 'react'
+import ModuleList from './ModuleList'
+import LessonTabs from "./LessonTabs";
+import ModuleEditor from './ModuleEditor'
 
 
-class CourseEditor extends React.Component{
+export default class CourseEditor
+    extends React.Component {
 
-    constructor(props)
-    {
-        super(props);
+    constructor(props) {
+        super(props)
+        this.state = {courseId: ''};
         this.selectCourse = this.selectCourse.bind(this);
-        this.state = {courseId :''};
+    }
+
+    componentDidMount() {
+        this.selectCourse
+        (this.props.match.params.courseId);
+    }
+
+    componentWillReceiveProps(newProps) {
+        this.selectCourse
+        (newProps.match.params.courseId);
     }
 
 
-    selectCourse(courseId)
-    {
-        this.setState({courseId:courseId});
-    }
-    
-    componentDidMount()
-    {
-     this.selectCourse(
-         this.props.match.params.courseId);
+    selectCourse(courseId) {
+        this.setState({courseId: courseId});
     }
 
-    componentWillReceiveProps(newProps)
-    {
-        this.selectCourse(newProps.match.params.courseId);
-    }
-
-    render()
-    {
+    render() {
         return (
-            <h3>Course {this.state.courseId}</h3>
-        )
+            <div>
+                <h1>Course Editor</h1>
+                <ModuleList courseId={this.state.courseId}/>
+            </div>
+        );
     }
-    
-    
-    
 }
-
-export default CourseEditor;
