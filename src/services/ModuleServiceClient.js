@@ -1,5 +1,6 @@
 const MODULE_API_URL ='http://localhost:8080/api/course/CID/module';
 const MODULE_API_URLD = 'http://localhost:8080/api/module/MODULE_ID';
+const BASE_MODULE_URL ="http://localhost:8080/api/"
 
 let _singleton = Symbol();
 export default class ModuleService {
@@ -36,6 +37,16 @@ export default class ModuleService {
         ('MODULE_ID', moduleId), {
             method: 'delete'
         })
+    }
+
+    updateModule(moduleId,module)
+    {
+        return fetch(BASE_MODULE_URL + 'module/'+moduleId,
+            {   body: JSON.stringify(module),
+                headers: { 'Content-Type': 'application/json' },
+                method: 'PUT'
+            }).then(function (response)
+        { return response.json(); })
     }
 
 

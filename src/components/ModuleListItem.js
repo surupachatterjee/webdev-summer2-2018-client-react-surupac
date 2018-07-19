@@ -1,10 +1,25 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
+import '../../node_modules/font-awesome/css/font-awesome.min.css'
 
 class ModuleListItem extends React.Component {
     constructor(props) {
         super(props);
+        this.state={
+            modTitle:''
+        };
+
+       // this.renderInput = this.renderInput.bind(this);
+        this.setmodTitle=this.setmodTitle.bind(this);
     }
+
+    setmodTitle(event)
+    {
+        this.setState({
+            modTitle:event.target.value
+        })
+    }
+
     render() {
         return (
 
@@ -19,7 +34,11 @@ class ModuleListItem extends React.Component {
                         {this.props.delete
                         (this.props.module.id)}}>
                 </button>
-                <button className="fa fa-pencil"></button>
+                <button className="fa fa-pencil"
+                onClick={()=>
+                {this.props.edit(this.props.module,
+                                this.props.module.id)}}>
+                </button>
                 </span>
             </li>
 
@@ -28,6 +47,8 @@ class ModuleListItem extends React.Component {
 
         );
     }
+
+
 
 
 

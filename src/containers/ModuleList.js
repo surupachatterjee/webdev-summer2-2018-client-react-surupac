@@ -10,7 +10,8 @@ class ModuleList extends React.Component {
         super(props);
         this.state = {
             courseId: '',
-            module: {title: ''},
+            module: {title: '',
+                moduleId:''},
             modules: []
         };
         this.setCourseId =
@@ -20,6 +21,8 @@ class ModuleList extends React.Component {
         this.createModule =
             this.createModule.bind(this);
         this.deleteModule = this.deleteModule.bind(this);
+        this.updateModule = this.updateModule.bind(this);
+        this.saveModule =this.saveModule.bind(this);
 
         this.moduleService = ModuleServiceClient.instance;
 
@@ -31,13 +34,30 @@ class ModuleList extends React.Component {
         this.setState({courseId: courseId});
     }
 
-    setModuleTitle(event) {
+    setModuleTitle(module,id) {
         this.setState({
             module: {
-                title: event.target.value
+                moduleId:id,
+                title: module.title
             }
         })
     }
+
+    saveModule(event)
+    {
+
+        this.setState(
+            {
+                module:{
+                    title:event.target.value,
+                    moduleId:this.state.module.moduleId
+
+                }
+            }
+        )
+        console.log(event.target.value +":"+ this.state.module.moduleId);
+    }
+
 
     createModule() {
         this.moduleService
@@ -54,6 +74,19 @@ class ModuleList extends React.Component {
     deleteModule(moduleId) {
         this.moduleService
             .deleteModule(moduleId)
+            .then(() => {
+                this.findAllModulesForCourse
+                (this.state.courseId)
+            });
+    }
+
+    updateModule()
+    {
+        console.log("updateModule : " +this.state.module.title+
+          ":" + this.state.module.moduleId);
+        this.moduleService
+            .updateModule(this.state.module.moduleId,
+                this.state.module)
             .then(() => {
                 this.findAllModulesForCourse
                 (this.state.courseId)
@@ -86,21 +119,38 @@ class ModuleList extends React.Component {
     render() {
         return (
             <Router>
+                {/*<div className="p-3 mb-2 bg-dark text-white">*/}
                 <div className="row">
                     <div className="col-4">
-                    <h4>Module List for Course:{this.state.courseId}</h4>
-                        {this.renderModules()}
-                    <input placeholder="New Module"
-                           value={this.state.module.title}
-                           onChange={this.setModuleTitle}/>
-                    <button onClick={this.createModule}>Create</button>
-
+                        {/* <h4>Module List for Course:{this.state.courseId}</h4>*/}
+                        <div>
+                            {this.renderModules()}
+                        </div>
+                        <br/>
+                        <br/>
+                        <div className="input-group mb-3">
+                            <input placeholder="New Module"
+                                   className="form-control"
+                                   defaultValue={this.state.module.title}
+                                   onChange={this.saveModule}/>
+                            <div className="input-group-append">
+                                <button onClick={this.createModule}
+                                className="fa fa-plus-square"></button>
+                            </div>
+                            <div className="input-group-append">
+                                <button
+                                    onClick={this.updateModule}
+                                        className="fa fa-save"></button>
+                            </div>
+                        </div>
                     </div>
+
                     <div className="col-8">
-                    <Route path="/course/:courseId/module/:moduleId"
-                           component={ModuleEditor}/>
+                        <Route path="/course/:courseId/module/:moduleId"
+                               component={ModuleEditor}/>
                     </div>
                 </div>
+               {/* </div>*/}
 
 
             </Router>
@@ -114,12 +164,13 @@ class ModuleList extends React.Component {
         var modules =
             this.state.modules.map((module) => {
                 return <ModuleListItem key={module.id}
-                                       courseId = {this.state.courseId}
+                                       courseId={this.state.courseId}
                                        module={module}
-                                       delete={this.deleteModule}/>
+                                       delete={this.deleteModule}
+                                        edit={this.setModuleTitle}/>
 
             });
-        return (<ul>{modules}</ul>);
+        return (<ul className="list-group">{modules}</ul>);
 
     }
 

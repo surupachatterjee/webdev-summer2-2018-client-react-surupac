@@ -18,7 +18,7 @@ render(){
                 {this.props.course.title}
                 </Link>
                 </td>
-            <td></td>
+            <td>me</td>
             <td></td>
             {/*<td>
                 <Link to=
