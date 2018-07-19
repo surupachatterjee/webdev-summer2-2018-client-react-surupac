@@ -12,8 +12,11 @@ class CourseList extends React.Component {
             courses: [],
             course:{
                 title:'',
-                id:''
-            }
+                id:'',
+                created:'',
+                modified:''
+            },
+
         };
 
         this.createCourse = this.createCourse.bind(this);
@@ -43,7 +46,8 @@ class CourseList extends React.Component {
                 course:
                     {
                         title:event.target.value,
-                        id:this.state.course.id
+                        id:this.state.course.id,
+                        modified:new Date()
                     }
             }
         )
@@ -74,9 +78,14 @@ class CourseList extends React.Component {
 
 
     createCourse() {
+        var c = {
+            title:this.state.course.title,
+            created:new Date()
+        }
         console.log(this.state.course);
+
         this.courseService
-            .createCourse(this.state.course)
+            .createCourse(c)
             .then(() => {
                 this.findAllCourses();
             });
@@ -92,6 +101,7 @@ class CourseList extends React.Component {
                 this.state.course.id,
                 this.state.course
             ).then(() => {
+            this.state.course.id='';
             this.findAllCourses();
         });
     }
@@ -143,7 +153,7 @@ class CourseList extends React.Component {
             return <CourseRow key={course.id}
                               course={course}
                               delete={this.deleteCourse}
-            edit={this.setCourse}/>
+                              edit={this.setCourse}/>
         });
         return (rows)
     }

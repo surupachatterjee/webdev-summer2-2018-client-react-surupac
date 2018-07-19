@@ -20,7 +20,7 @@ render(){
                 </Link>
                 </td>
             <td>me</td>
-            <td></td>
+            <td>{this.props.course.modified}</td>
             {/*<td>
                 <Link to=
                           {`/course/${this.props.course.id}/edit`}>
