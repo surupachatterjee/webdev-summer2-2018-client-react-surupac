@@ -13,7 +13,9 @@ class LessonTabs extends React.Component {
         this.state = {
             courseId: '',
             moduleId: '',
-            lesson: {title: 'Lesson1'},
+            lesson: {
+                title: 'Lesson1',
+                lessonId :''},
             lessons: []
         };
         this.setCourseId = this.setCourseId.bind(this);
@@ -21,7 +23,6 @@ class LessonTabs extends React.Component {
         this.createLesson = this.createLesson.bind(this);
         this.deleteLesson =this.deleteLesson.bind(this);
         this.updateLesson = this.updateLesson.bind(this);
-        this.setLessonTitle =this.setLessonTitle.bind(this);
         this.findAllLessonsForModule = this.findAllLessonsForModule.bind(this);
         this.lessonService = LessonServiceClient.instance;
 
@@ -31,10 +32,7 @@ class LessonTabs extends React.Component {
         this.setState({courseId: courseId});
     }
 
-    setLessonTitle(lessonTitle)
-    {
-        this.setState({lesson:lessonTitle})
-    }
+
 
     setModuleId(moduleId) {
         this.setState({moduleId: moduleId});
@@ -77,13 +75,16 @@ class LessonTabs extends React.Component {
 
     updateLesson(lessonId,lessonTitle){
         console.log("Update" + ": "+  lessonId + ":" + lessonTitle);
-       // this.state.lesson.title=lessonTitle;
+        var les = {title:lessonTitle,id:lessonId};
+
         this.lessonService
-            .updateLesson(lessonId,this.state.lesson)
+            .updateLesson(lessonId,les)
             .then(()=>
                 this.findAllLessonsForModule(
                     this.state.courseId,
                     this.state.moduleId));
+        console.log("after update");
+        console.log(les.title +  ": : " +les.id);
 
     }
 

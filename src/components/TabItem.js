@@ -35,11 +35,11 @@ class TabItem extends React.Component {
                             onClick={() => {
                                 this.props.delete(this.props.lesson.id)
                             }}></button>
-                        <button className="fa fa-save"
+                        <button className="fa fa-check"
                                 onClick={() => {
                                     this.props.lesson.title = this.state.currTitle;
                                     this.props.edit(this.props.lesson.id,
-                                        this.props.lesson)
+                                        this.props.lesson.title)
                                 }}></button>
                     </span>
 
