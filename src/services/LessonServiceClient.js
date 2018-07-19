@@ -1,5 +1,5 @@
 const LESSON_API_URL = "http://localhost:8080/api/course/CID/module/MID/lesson";
-const BASE_URL = "http://localhost:8080/api/";
+const BASE_URL = "http://localhost:8080/api";
 
 let _singleton = Symbol();
 export default class LessonServiceClient {
@@ -33,13 +33,13 @@ export default class LessonServiceClient {
     }
 
     deleteLesson(lessonId) {
-        return fetch(BASE_URL + 'lesson/' + lessonId, {
+        return fetch(BASE_URL + '/lesson/' + lessonId, {
             method: 'DELETE'
         })
     }
 
     updateLesson(lessonId, lesson) {
-        return fetch(BASE_URL + 'lesson/' + lessonId,
+        return fetch(BASE_URL + '/lesson/' + lessonId,
             {
                 body: JSON.stringify(lesson),
                 headers: {'Content-Type': 'application/json'},

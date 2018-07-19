@@ -8,12 +8,47 @@ class CourseList extends React.Component {
     constructor() {
         super();
         this.courseService = CourseService.instance;
-        this.state = {courses: []};
-        this.titleChanged = this.titleChanged.bind(this);
+        this.state = {
+            courses: [],
+            course:{
+                title:'',
+                id:''
+            }
+        };
+
         this.createCourse = this.createCourse.bind(this);
         this.deleteCourse = this.deleteCourse.bind(this);
+        this.updateCourse=this.updateCourse.bind(this);
+        this.setCourse=this.setCourse.bind(this);
+        this.saveCourse=this.saveCourse.bind(this);
 
     }
+
+    setCourse(id,title)
+    {
+        this.setState(
+            {
+                course:{
+                    title:title,
+                    id:id
+                }
+            }
+        )
+    }
+
+    saveCourse(event)
+    {
+        this.setState(
+            {
+                course:
+                    {
+                        title:event.target.value,
+                        id:this.state.course.id
+                    }
+            }
+        )
+    }
+
 
     componentDidMount() {
         this.findAllCourses();
@@ -36,11 +71,7 @@ class CourseList extends React.Component {
 
     }
 
-    titleChanged(event) {
-        this.setState({
-            course: {title: event.target.value}
-        })
-    }
+
 
     createCourse() {
         console.log(this.state.course);
@@ -51,11 +82,25 @@ class CourseList extends React.Component {
             });
     }
 
+    updateCourse()
+    {
+        console.log("Course State change : "+
+        this.state.course.title+
+        " : " + this.state.course.id);
+        this.courseService
+            .updateCourse(
+                this.state.course.id,
+                this.state.course
+            ).then(() => {
+            this.findAllCourses();
+        });
+    }
+
     render() {
         return (
             <div>
                 <h2>Course List</h2>
-                <table className="table table-dark">
+                <table className="table table- table-hover table-responsive-sm table-striped">
                     <thead>
 
 
@@ -69,14 +114,17 @@ class CourseList extends React.Component {
 
                     <tr>
                         <th><input id="titleFld"
-                                   onChange={this.titleChanged}
+                                   onChange={this.saveCourse}
+                                   defaultValue={this.state.course.title}
                                    placeholder="New Course Title"/>
                         </th>
                         <th></th>
                         <th></th>
-                        <th></th>
                         <th>
-                            <button className="fa-2x fa fa-plus" onClick={this.createCourse}></button>
+                            <button className="fa fa-plus" onClick={this.createCourse}></button>
+                        </th>
+                        <th>
+                            <button className="fa fa-check" onClick={this.updateCourse}></button>
                         </th>
                     </tr>
 
@@ -94,7 +142,8 @@ class CourseList extends React.Component {
         {
             return <CourseRow key={course.id}
                               course={course}
-                              delete={this.deleteCourse}/>
+                              delete={this.deleteCourse}
+            edit={this.setCourse}/>
         });
         return (rows)
     }

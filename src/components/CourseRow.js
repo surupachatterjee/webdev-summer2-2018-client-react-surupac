@@ -7,6 +7,7 @@ class CourseRow extends React.Component
     constructor(props)
     {
         super(props);
+
     }
 
 render(){
@@ -27,10 +28,18 @@ render(){
                 </Link>
             </td>*/}
             <td><button
-                className="fa-2x fa fa-times"
+                className="fa fa-times"
                 onClick={() =>
                 {this.props.delete(this.props.course.id)}}>
             </button></td>
+            <td>
+                <button
+                    className="fa fa-pencil"
+                    onClick={() =>
+                    {this.props.edit(this.props.course.id,
+                        this.props.course.title)}}>
+                </button>
+            </td>
         </tr>
     )
 }
