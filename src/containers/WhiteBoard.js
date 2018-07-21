@@ -2,7 +2,7 @@ import React from 'react'
 import CourseList from './CourseList'
 import {BrowserRouter as Router,Route,Link} from 'react-router-dom'
 import CourseEditor from './CourseEditor'
-import CourseCard from "../components/CourseCard";
+/*import CourseCard from "../components/CourseCard";*/
 
 
 
@@ -20,9 +20,9 @@ class WhiteBoard extends React.Component {
                            component={CourseEditor}>
                     </Route>
                     <Link to="/course/list">CourseList</Link>
-                    <Route path="/coursecard"
+                    {/*<Route path="/coursecard"
                     component={CourseCard}>
-                    </Route>
+                    </Route>*/}
 
                 </div>
             </Router>
