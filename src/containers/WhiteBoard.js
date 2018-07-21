@@ -2,6 +2,7 @@ import React from 'react'
 import CourseList from './CourseList'
 import {BrowserRouter as Router,Route,Link} from 'react-router-dom'
 import CourseEditor from './CourseEditor'
+import CourseCard from "../components/CourseCard";
 
 
 
@@ -11,7 +12,7 @@ class WhiteBoard extends React.Component {
 
             <Router>
                 <div className="container-fluid">
-                    <h1>Course Manager</h1>
+                    {/*<h1>Course Manager</h1>*/}
                     <Route path="/course/list"
                            component={CourseList}>
                     </Route>
@@ -19,6 +20,10 @@ class WhiteBoard extends React.Component {
                            component={CourseEditor}>
                     </Route>
                     <Link to="/course/list">CourseList</Link>
+                    <Route path="/coursecard"
+                    component={CourseCard}>
+                    </Route>
+
                 </div>
             </Router>
         )

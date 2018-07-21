@@ -127,13 +127,11 @@ class TopicPills extends React.Component {
     renderTopics() {
         var topics = this.state.topics.map((topic) => {
             return (
-                <div>
                 <TopicPillItem key={topic.id}
                                courseId={this.state.courseId}
                                moduleId={this.state.moduleId}
                                lessonId={this.state.lessonId}
                                topic={topic}/>
-                </div>
             )
         });
         return topics;
