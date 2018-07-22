@@ -33,6 +33,7 @@ class TabItem extends React.Component {
                     </Link>
                     <button className="fa fa-times"
                             onClick={() => {
+                                if(window.confirm("Are you sure you want to delete this lesson?"))
                                 this.props.delete(this.props.lesson.id)
                             }}></button>
                         <button className="fa fa-check"

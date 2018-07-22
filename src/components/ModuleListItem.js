@@ -31,8 +31,9 @@ class ModuleListItem extends React.Component {
                 <span className="float-right">
                 <button className="fa fa-trash"
                         onClick={() =>
-                        {this.props.delete
-                        (this.props.module.id)}}>
+                        {
+                            if(window.confirm("Are you sure you want to delete this module?"))
+                            this.props.delete(this.props.module.id)}}>
                 </button>
                 <button className="fa fa-pencil"
                 onClick={()=>
