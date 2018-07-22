@@ -12,7 +12,7 @@ class TopicPillItem extends React.Component {
         return (
 
             <ul className="nav nav-pills nav-justified">
-                <li className="nav-item">
+                <li className="nav-item ">
                     <a className="nav-link"
                        href="#">
                       {this.props.topic.title}
