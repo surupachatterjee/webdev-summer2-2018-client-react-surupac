@@ -3,11 +3,11 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 import CourseRow from '../components/CourseRow';
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
 import CourseService from '../services/CourseService';
-import CourseCardList from "./CourseCardList";
+import CourseCard from '../components/CourseCard';
 import {BrowserRouter as Router,Route,Link} from 'react-router-dom'
 
 
-class CourseList extends React.Component {
+class CourseCardList extends React.Component {
     constructor() {
         super();
         this.courseService = CourseService.instance;
@@ -106,6 +106,7 @@ class CourseList extends React.Component {
     }
 
     render() {
+        console.log("inside course card");
         return (
             <div>
 
@@ -132,15 +133,16 @@ class CourseList extends React.Component {
                         <th>Owned By</th>
                         <th>Last Modified By</th>
                         <th>
-                            <Link to="/course/cardlist">
-                            <button className="fa fa-th" style={{"fontSize": "36px;"}}></button></Link>
+                            <Link to="/course/list">
+                            <button className="fa fa-th" style={{"fontSize": "36px;"}}
+                                    onClick={this.cardView}></button></Link>
                         </th>
                         <th></th>
                     </tr>
                     </thead>
 
                     <tbody>
-                    {this.courseRows()}
+                    {this.courseCardRows()}
                     </tbody>
 
                 </table>
@@ -149,21 +151,18 @@ class CourseList extends React.Component {
         )
     }
 
-    courseRows() {
+    courseCardRows() {
         var rows = this.state.courses.map((course) => {
-            return <CourseRow key={course.id}
+            return <CourseCard key={course.id}
                               course={course}
                               delete={this.deleteCourse}
                               edit={this.setCourse}/>
 
 
         });
-        return (rows)
+        return <div className="card-deck">{rows}</div>
     }
-
-
-
 
 }
 
-export default CourseList;
+export default CourseCardList;

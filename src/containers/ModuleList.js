@@ -117,6 +117,7 @@ class ModuleList extends React.Component {
     }
 
     render() {
+        console.log("inside modulelist.render" + this.state.courseId);
         return (
             <Router>
                 {/*<div className="p-3 mb-2 bg-dark text-white">*/}

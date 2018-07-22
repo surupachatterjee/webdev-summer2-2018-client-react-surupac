@@ -2,6 +2,7 @@ import React from 'react'
 import ModuleList from './ModuleList'
 import LessonTabs from "./LessonTabs";
 import ModuleEditor from './ModuleEditor'
+import CourseService from "../services/CourseService";
 
 
 export default class CourseEditor
@@ -9,13 +10,20 @@ export default class CourseEditor
 
     constructor(props) {
         super(props)
-        this.state = {courseId: ''};
+        console.log("inside cons ");
+        this.state = {
+            courseId: '',
+            course:''};
         this.selectCourse = this.selectCourse.bind(this);
+        this.courseService =CourseService.instance;
+        this.findCourseById =this.findCourseById.bind(this);
+
     }
 
     componentDidMount() {
         this.selectCourse
         (this.props.match.params.courseId);
+
     }
 
     componentWillReceiveProps(newProps) {
@@ -25,13 +33,34 @@ export default class CourseEditor
 
 
     selectCourse(courseId) {
-        this.setState({courseId: courseId});
+        this.findCourseById(courseId);
+        this.setState({
+            courseId: courseId
+        });
+
+
     }
+
+
+    findCourseById(courseId)
+    {
+       return this.courseService.findCourseById(
+            courseId
+        ).then((course) =>
+       {
+           this.setState({
+               course:course
+           })
+
+       });
+
+    }
+
 
     render() {
         return (
             <div>
-                <h1>Course Editor</h1>
+                <h1>{this.state.course.title}</h1>
                 <ModuleList courseId={this.state.courseId}/>
             </div>
         );

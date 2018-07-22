@@ -13,6 +13,7 @@ class CourseRow extends React.Component
 render(){
     return(
         <tr>
+
             <td>
                 <Link to=
                           {`/course/${this.props.course.id}/edit`}>
@@ -40,6 +41,7 @@ render(){
                         this.props.course.title)}}>
                 </button>
             </td>
+
         </tr>
     )
 }
