@@ -29,13 +29,13 @@ class ModuleListItem extends React.Component {
                 {this.props.module.title}
             </Link>
                 <span className="float-right">
-                <button className="fa fa-trash"
+                <button className="fa fa-times btn-danger"
                         onClick={() =>
                         {
                             if(window.confirm("Are you sure you want to delete this module?"))
                             this.props.delete(this.props.module.id)}}>
                 </button>
-                <button className="fa fa-pencil"
+                <button className="fa fa-pencil btn-secondary"
                 onClick={()=>
                 {this.props.edit(this.props.module,
                                 this.props.module.id)}}>

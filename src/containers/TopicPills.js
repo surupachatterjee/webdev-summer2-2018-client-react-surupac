@@ -19,9 +19,9 @@ class TopicPills extends React.Component {
         this.setModuleId = this.setModuleId.bind(this);
         this.setLessonId = this.setLessonId.bind(this);
         this.setTopicTitle = this.setTopicTitle.bind(this);
-        this.createTopic =this.createTopic.bind(this);
+        this.createTopic = this.createTopic.bind(this);
         this.topicService = TopicService.instance;
-        this.findAllTopicsForLesson=this.findAllTopicsForLesson.bind(this);
+        this.findAllTopicsForLesson = this.findAllTopicsForLesson.bind(this);
 
     }
 
@@ -45,10 +45,9 @@ class TopicPills extends React.Component {
         })
     }
 
-    setTopics(topics)
-    {
+    setTopics(topics) {
         this.setState(
-            {topics:topics}
+            {topics: topics}
         )
     }
 
@@ -69,21 +68,19 @@ class TopicPills extends React.Component {
     }
 
 
-    findAllTopicsForLesson(courseId,moduleId,lessonId)
-    {
+    findAllTopicsForLesson(courseId, moduleId, lessonId) {
         this.topicService
             .findAllTopicsForLesson(
                 courseId,
                 moduleId,
                 lessonId
             ).then((topics) => {
-        this.setTopics(topics)
-    });
+            this.setTopics(topics)
+        });
 
     }
 
-    createTopic()
-    {
+    createTopic() {
         this.topicService
             .createTopic(
                 this.state.courseId,
@@ -104,18 +101,20 @@ class TopicPills extends React.Component {
         return (
             <div>
                 <div className="input-group mb-3">
-                <input placeholder="New Topic"
-                       value={this.state.topic.title}
-                       className="form-control"
-                       onChange={this.setTopicTitle}/>
+                    <input placeholder="New Topic"
+                           value={this.state.topic.title}
+                           className="form-control"
+                           onChange={this.setTopicTitle}/>
                     <div className="input-group-append">
-                <button onClick={this.createTopic}
-                        className="fa fa-plus-square"></button>
+                        <button onClick={this.createTopic}
+                                className="fa fa-plus-square btn-success"></button>
+                        {/*<button onClick={this.createTopic}
+                                className="fa fa-pencil-square btn-secondary"></button>*/}
                     </div>
                 </div>
                 <div>
                     <ul className="nav nav-pills nav-justified">
-                {this.renderTopics()}
+                        {this.renderTopics()}
                     </ul>
                 </div>
             </div>

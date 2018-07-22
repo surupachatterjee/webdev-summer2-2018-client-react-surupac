@@ -31,12 +31,12 @@ class TabItem extends React.Component {
                                onChange={this.setCurrTitle}
                         ></input>
                     </Link>
-                    <button className="fa fa-times"
+                    <button className="fa fa-times btn-danger"
                             onClick={() => {
                                 if(window.confirm("Are you sure you want to delete this lesson?"))
                                 this.props.delete(this.props.lesson.id)
                             }}></button>
-                        <button className="fa fa-check"
+                        <button className="fa fa-check btn-success"
                                 onClick={() => {
                                     this.props.lesson.title = this.state.currTitle;
                                     this.props.edit(this.props.lesson.id,

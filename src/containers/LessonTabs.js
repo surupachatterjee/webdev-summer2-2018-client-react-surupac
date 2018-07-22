@@ -108,7 +108,7 @@ class LessonTabs extends React.Component {
 
                 <ul className="nav nav-tab nav-justified ">
                     {this.renderTab()}
-                    <button className="fa fa-plus" onClick={this.createLesson}></button>
+                    <button className="fa fa-plus btn-secondary" onClick={this.createLesson}></button>
                 </ul>
                     <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
                            component={LessonEditor}/>

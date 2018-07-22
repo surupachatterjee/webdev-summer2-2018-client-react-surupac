@@ -32,7 +32,7 @@ render(){
             </td>*/}
             <td>
                 <button
-                className="fa fa-times"
+                className="fa fa-times btn-danger"
                 data-toggle="modal"
                 data-target="#deleteCourseRow"
                 onClick={(event)=>{
@@ -44,7 +44,7 @@ render(){
             </td>
             <td>
                 <button
-                    className="fa fa-pencil"
+                    className="fa fa-pencil btn-secondary"
                     onClick={() =>
                     {this.props.edit(this.props.course.id,
                         this.props.course.title)}}>

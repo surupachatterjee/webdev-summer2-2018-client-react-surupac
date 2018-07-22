@@ -134,7 +134,7 @@ class CourseCardList extends React.Component {
                         <th>Last Modified By</th>
                         <th>
                             <Link to="/course/list">
-                            <button className="fa fa-th" style={{"fontSize": "36px;"}}
+                            <button className="fa fa-th" style={{"fontSize": "16px"}}
                                     onClick={this.cardView}></button></Link>
                         </th>
                         <th></th>

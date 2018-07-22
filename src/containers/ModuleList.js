@@ -136,12 +136,12 @@ class ModuleList extends React.Component {
                                    onChange={this.saveModule}/>
                             <div className="input-group-append">
                                 <button onClick={this.createModule}
-                                className="fa fa-plus-square"></button>
+                                className="fa fa-plus btn-danger"></button>
                             </div>
                             <div className="input-group-append">
                                 <button
                                     onClick={this.updateModule}
-                                        className="fa fa-save"></button>
+                                        className="fa fa-check btn-success"></button>
                             </div>
                         </div>
                     </div>
