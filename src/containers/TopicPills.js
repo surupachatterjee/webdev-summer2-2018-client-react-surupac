@@ -6,7 +6,7 @@ import TopicService from '../services/TopicService'
 class TopicPills extends React.Component {
 
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             courseId: '',
             moduleId: '',
@@ -107,7 +107,8 @@ class TopicPills extends React.Component {
                            onChange={this.setTopicTitle}/>
                     <div className="input-group-append">
                         <button onClick={this.createTopic}
-                                className="fa fa-plus-square btn-success"></button>
+                                className="fa fa-plus-square btn-success">
+                        </button>
                         {/*<button onClick={this.createTopic}
                                 className="fa fa-pencil-square btn-secondary"></button>*/}
                     </div>
