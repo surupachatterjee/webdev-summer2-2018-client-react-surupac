@@ -1,4 +1,4 @@
-Link to Heroku app: 
+Link to Heroku app: https://course-mgmt-react-client-stc.herokuapp.com/
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
