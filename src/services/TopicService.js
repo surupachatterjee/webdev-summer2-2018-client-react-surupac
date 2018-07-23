@@ -1,5 +1,6 @@
 //const TOPIC_API_URL = "http://localhost:8080/api/course/CID/module/MID/lesson/LID/topic";
 const TOPIC_API_URL = "https://course-management-stc.herokuapp.com/api/course/CID/module/MID/lesson/LID/topic";
+const BASE_URL ="https://course-management-stc.herokuapp.com/api/";
 
 let _singleton = Symbol();
 export default class TopicService {
@@ -36,4 +37,12 @@ export default class TopicService {
                 return response.json();
             })
     }
+
+    deleteTopic(topicId) {
+        return fetch(BASE_URL + "topic/" + topicId, {
+            method: 'delete'
+        })
+    }
+
+
 }

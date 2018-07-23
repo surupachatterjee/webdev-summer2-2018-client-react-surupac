@@ -22,6 +22,7 @@ class TopicPills extends React.Component {
         this.setTopicTitle = this.setTopicTitle.bind(this);
         this.createTopic = this.createTopic.bind(this);
         this.topicService = TopicService.instance;
+        this.deleteTopic=this.deleteTopic.bind(this);
         this.findAllTopicsForLesson = this.findAllTopicsForLesson.bind(this);
 
     }
@@ -98,6 +99,20 @@ class TopicPills extends React.Component {
     }
 
 
+    deleteTopic(topicId)
+    {
+        console.log("Inside delete");
+        this.topicService
+            .deleteTopic(topicId)
+            .then(() => {
+                this.findAllTopicsForLesson
+                (this.state.courseId,
+                    this.state.moduleId,
+                    this.state.lessonId);
+            })
+    }
+
+
     render() {
         return (
             <div>
@@ -131,7 +146,8 @@ class TopicPills extends React.Component {
                                courseId={this.state.courseId}
                                moduleId={this.state.moduleId}
                                lessonId={this.state.lessonId}
-                               topic={topic}/>
+                               topic={topic}
+                delete={this.deleteTopic}/>
             )
         });
         return <ul className="nav nav-pills">{topics}</ul>;

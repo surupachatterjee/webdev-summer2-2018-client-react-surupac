@@ -11,12 +11,12 @@ class TopicPillItem extends React.Component {
 
     render() {
         return (
-                <li className="nav-item ">
-                    <a className="nav-link alert-info"
-                       href="#">
-                      {this.props.topic.title}
-                    </a>
-                      </li>
+            <li className="nav-item ">
+                <a className="nav-link alert-info"
+                   href="#">
+                    {this.props.topic.title}
+                </a>
+            </li>
         )
     }
 }

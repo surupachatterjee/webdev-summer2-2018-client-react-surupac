@@ -43,7 +43,7 @@ class ModuleEditor
     render() {
         return (
             <div>
-            <h1>Module Editor</h1>
+            {/*<h1>Module Editor</h1>*/}
                 <LessonTabs courseId = {this.state.courseId}
                             moduleId ={this.state.moduleId}/>
             </div>
