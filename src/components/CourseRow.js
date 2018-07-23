@@ -1,6 +1,9 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import '../../node_modules/bootstrap/dist/css/bootstrap.css';
+import Modal from '../../node_modules/react-modal'
+
+
 
 class CourseRow extends React.Component
 {
@@ -8,11 +11,11 @@ class CourseRow extends React.Component
     constructor(props)
     {
         super(props);
-        //this.modalrender =this.modalrender.bind(this);
-
     }
 
-render(){
+
+
+    render(){
     return(
         <tr>
 
@@ -36,11 +39,9 @@ render(){
                 data-toggle="modal"
                 data-target="#deleteCourseRow"
                 onClick={(event)=>{
-                    if(window.confirm("Are you sure you want to delete this course?"))
-                        this.props.delete(this.props.course.id)}}
-                >
+                    if(window.confirm("You are about to delete course "+ `${this.props.course.title}`))
+                        this.props.delete(this.props.course.id)}}>
             </button>
-
             </td>
             <td>
                 <button
