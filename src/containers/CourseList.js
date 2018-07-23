@@ -117,9 +117,9 @@ class CourseList extends React.Component {
                            defaultValue={this.state.course.title}
                            className="form-control col-sm-2 navbar-brand font-italic"
                            placeholder="New Course Title"/>
-                    <button className="fa fa-plus navbar-brand btn-danger"
+                    <button className="fa fa-plus btn-secondary"
                             onClick={this.createCourse}></button>
-                    <button className="fa fa-check navbar-brand btn-success"
+                    <button className="fa fa-check btn-success"
                             onClick={this.updateCourse}></button>
 
                 </nav>

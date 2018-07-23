@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-
+import '../css/topicpillitem.css'
 
 class TabItem extends React.Component {
 
@@ -26,7 +26,8 @@ class TabItem extends React.Component {
                     <Link
                         to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lesson.id}`}>
                         <input defaultValue={this.props.lesson.title}
-                               style={{"border": "none"}}
+                               /*style={{"border": "none"}}*/
+                               className="cust-input"
                                contentEditable="true"
                                onChange={this.setCurrTitle}>
                         </input>

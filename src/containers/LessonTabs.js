@@ -14,7 +14,7 @@ class LessonTabs extends React.Component {
             courseId: '',
             moduleId: '',
             lesson: {
-                title: 'Lesson1',
+                title: 'Untitled Lesson',
                 lessonId :''},
             lessons: []
         };

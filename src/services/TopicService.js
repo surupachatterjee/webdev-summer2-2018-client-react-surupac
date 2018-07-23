@@ -45,4 +45,16 @@ export default class TopicService {
     }
 
 
+    updateTopic(topicId, topic) {
+        return fetch(BASE_URL + 'topic/' + topicId,
+            {
+                body: JSON.stringify(topic),
+                headers: {'Content-Type': 'application/json'},
+                method: 'PUT'
+            }).then(function (response) {
+            return response.json();
+        })
+    }
+
+
 }

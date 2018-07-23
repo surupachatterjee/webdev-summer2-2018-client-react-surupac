@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 import ModuleEditor from './ModuleEditor'
 
 
+
 class ModuleList extends React.Component {
     constructor(props) {
         super(props);
@@ -136,7 +137,7 @@ class ModuleList extends React.Component {
                                    onChange={this.saveModule}/>
                             <div className="input-group-append">
                                 <button onClick={this.createModule}
-                                className="fa fa-plus btn-danger">
+                                className="fa fa-plus btn-secondary">
                                 </button>
                             </div>
                             <div className="input-group-append">

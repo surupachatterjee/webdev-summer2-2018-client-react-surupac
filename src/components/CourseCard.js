@@ -10,7 +10,7 @@ class CourseCard extends React.Component {
     render() {
         return (
             <div>
-                <div className="card" styles={{width: '18rem'}}>
+                <div className="card">
                     {/*<img className="card-img-bottom"
                          src="https://picsum.photos/279/200"/>*/}
                     <div className="card-body">

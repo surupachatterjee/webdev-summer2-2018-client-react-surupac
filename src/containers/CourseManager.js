@@ -23,7 +23,7 @@ class WhiteBoard extends React.Component {
                     <Route path="/course/:courseId/edit"
                            component={CourseEditor}>
                     </Route>
-                    <Link to="/course/list">CourseList</Link>
+                    <Link to="/course/list">CourseList</Link><br/>
                     <Link to="/course/cardlist">CourseCard</Link>
                     {/*<Route path="/coursecard"
                     component={CourseCard}>

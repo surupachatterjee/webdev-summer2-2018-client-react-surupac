@@ -23,6 +23,7 @@ class TopicPills extends React.Component {
         this.createTopic = this.createTopic.bind(this);
         this.topicService = TopicService.instance;
         this.deleteTopic=this.deleteTopic.bind(this);
+        this.updateTopic=this.updateTopic.bind(this);
         this.findAllTopicsForLesson = this.findAllTopicsForLesson.bind(this);
 
     }
@@ -113,6 +114,22 @@ class TopicPills extends React.Component {
     }
 
 
+    updateTopic(topicId,topictitle)
+    {
+        console.log("inside update");
+        var top = {title:topictitle,id:topicId}
+        console.log("Topic Title Fetched :" + topictitle + "; Topic Id is :" +topicId);
+        this.topicService
+            .updateTopic(topicId,top)
+            .then(() => {
+                this.findAllTopicsForLesson
+                (this.state.courseId,
+                    this.state.moduleId,
+                    this.state.lessonId);
+            })
+    }
+
+
     render() {
         return (
             <div>
@@ -123,7 +140,7 @@ class TopicPills extends React.Component {
                            onChange={this.setTopicTitle}/>
                     <div className="input-group-append">
                         <button onClick={this.createTopic}
-                                className="fa fa-plus btn-danger">
+                                className="fa fa-plus btn-secondary">
                         </button>
                         {/*<button onClick={this.createTopic}
                                 className="fa fa-pencil-square btn-secondary"></button>*/}
@@ -147,7 +164,8 @@ class TopicPills extends React.Component {
                                moduleId={this.state.moduleId}
                                lessonId={this.state.lessonId}
                                topic={topic}
-                delete={this.deleteTopic}/>
+                               delete={this.deleteTopic}
+                                edit={this.updateTopic}/>
             )
         });
         return <ul className="nav nav-pills">{topics}</ul>;
