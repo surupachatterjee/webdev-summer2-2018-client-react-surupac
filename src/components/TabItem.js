@@ -28,20 +28,20 @@ class TabItem extends React.Component {
                         <input defaultValue={this.props.lesson.title}
                                style={{"border": "none"}}
                                contentEditable="true"
-                               onChange={this.setCurrTitle}
-                        ></input>
+                               onChange={this.setCurrTitle}>
+                        </input>
                     </Link>
                     <button className="fa fa-times btn-danger"
                             onClick={() => {
-                                if(window.confirm("Are you sure you want to delete this lesson?"))
-                                this.props.delete(this.props.lesson.id)
-                            }}></button>
+                                if(window.confirm("You are about to delete lesson " + `${this.props.lesson.title}`))
+                                this.props.delete(this.props.lesson.id)}}>
+                    </button>
                         <button className="fa fa-check btn-success"
                                 onClick={() => {
                                     this.props.lesson.title = this.state.currTitle;
                                     this.props.edit(this.props.lesson.id,
-                                        this.props.lesson.title)
-                                }}></button>
+                                        this.props.lesson.title)}}>
+                        </button>
                     </span>
 
                 </li>
