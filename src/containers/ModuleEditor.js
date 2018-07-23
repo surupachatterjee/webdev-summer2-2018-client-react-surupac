@@ -44,6 +44,7 @@ class ModuleEditor
         return (
             <div>
             {/*<h1>Module Editor</h1>*/}
+                <h4>Edit Module Here</h4>
                 <LessonTabs courseId = {this.state.courseId}
                             moduleId ={this.state.moduleId}/>
             </div>
