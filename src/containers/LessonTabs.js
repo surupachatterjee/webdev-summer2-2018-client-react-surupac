@@ -120,13 +120,14 @@ class LessonTabs extends React.Component {
     renderTab() {
         var tabs =
             this.state.lessons.map((lesson) => {
-                return <TabItem key={lesson.id}
+                return  <TabItem key={lesson.id}
                                 courseId={this.state.courseId}
                                 moduleId={this.state.moduleId}
                                 lesson={lesson}
                                 delete={this.deleteLesson}
                                 edit={this.updateLesson}
                 />
+
             });
         return tabs;
     }

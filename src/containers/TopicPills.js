@@ -1,7 +1,8 @@
 import React from 'react'
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
 import TopicPillItem from "../components/TopicPillItem";
-import TopicService from '../services/TopicService'
+import TopicService from '../services/TopicService';
+import '../css/topicpillitem.css';
 
 class TopicPills extends React.Component {
 
@@ -107,16 +108,15 @@ class TopicPills extends React.Component {
                            onChange={this.setTopicTitle}/>
                     <div className="input-group-append">
                         <button onClick={this.createTopic}
-                                className="fa fa-plus-square btn-success">
+                                className="fa fa-plus btn-danger">
                         </button>
                         {/*<button onClick={this.createTopic}
                                 className="fa fa-pencil-square btn-secondary"></button>*/}
                     </div>
                 </div>
                 <div>
-                    <ul className="nav nav-pills nav-justified">
+
                         {this.renderTopics()}
-                    </ul>
                 </div>
             </div>
 
@@ -134,7 +134,7 @@ class TopicPills extends React.Component {
                                topic={topic}/>
             )
         });
-        return topics;
+        return <ul className="nav nav-pills">{topics}</ul>;
     }
 
 }

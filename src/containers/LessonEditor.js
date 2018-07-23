@@ -8,7 +8,7 @@ class LessonEditor extends React.Component {
         super(props);
         this.setCourseId = this.setCourseId.bind(this);
         this.setModuleId = this.setModuleId.bind(this);
-        this.lessonId = this.setLessonId.bind(this);
+        this.setLessonId = this.setLessonId.bind(this);
         this.state = {
             courseId: '',
             moduleId: '',
@@ -36,7 +36,7 @@ class LessonEditor extends React.Component {
             this.props.match.params.courseId);
         this.setModuleId(
             this.props.match.params.moduleId);
-        this.lessonId(
+        this.setLessonId(
             this.props.match.params.lessonId);
     }
 
