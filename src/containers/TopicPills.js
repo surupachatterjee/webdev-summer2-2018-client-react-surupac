@@ -3,6 +3,15 @@ import '../../node_modules/font-awesome/css/font-awesome.min.css';
 import TopicPillItem from "../components/TopicPillItem";
 import TopicService from '../services/TopicService';
 import '../css/topicpillitem.css';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import WidgetListContainer from "./widgets/WidgetListContainer";
+import TopicPillEditor from "./TopicPillEditor";
+import {Provider} from 'react-redux'
+import {createStore} from 'redux'
+import {widgetReducer} from "../reducers/widgetReducer";
+
+
+let store = createStore(widgetReducer);
 
 class TopicPills extends React.Component {
 
@@ -130,8 +139,10 @@ class TopicPills extends React.Component {
     }
 
 
+
     render() {
         return (
+            <Router>
             <div>
                 <div className="input-group mb-3">
                     <input placeholder="New Topic"
@@ -150,9 +161,16 @@ class TopicPills extends React.Component {
 
                         {this.renderTopics()}
                 </div>
+                <div>
+
+                    <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId"
+                           component={TopicPillEditor}/>
+                </div>
             </div>
+            </Router>
 
         );
+
     }
 
 

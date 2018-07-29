@@ -1,6 +1,7 @@
 import React from 'react'
 import '../../node_modules/bootstrap/dist/css/bootstrap.css'
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
+import {Link} from 'react-router-dom'
 
 
 class TopicPillItem extends React.Component {
@@ -33,11 +34,14 @@ class TopicPillItem extends React.Component {
             <li className="nav-item col-sm-auto">
                 <div className="col-xs-3">
                 <span className="nav-link alert-info">
+                    <Link
+                        to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lessonId}/topic/${this.props.topic.id}`}>
                     <input defaultValue={this.props.topic.title}
                            className=" form-control nav-link alert-info"
                            style={{"border": "none", "size":"12"}}
                             onChange={this.setCurrTitle}>
                     </input>
+                    </Link>
                     <button className="fa fa-check btn-success" onClick={(event) =>
                     {
                         this.props.edit(this.props.topic.id,this.state.topic.currTitle)
