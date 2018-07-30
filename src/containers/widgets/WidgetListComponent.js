@@ -45,7 +45,8 @@ class WidgetListComponent extends React.Component{
                                     let widget ={
                                         title : this.widgetTitle.value,
                                         id : -1* (this.props.widgets.length+1),
-                                        widgetType:this.widgetType.value
+                                        widgetType:this.widgetType.value,
+                                        widgetOrder:0
                                     }
                                     this.props.createWidget(widget)
                                     this.widgetTitle.value=''
@@ -67,8 +68,27 @@ class WidgetListComponent extends React.Component{
                         <li className="list-group-item"
                             key={index}>
                             {widget.title}
-                            <button className="float-right btn btn-warning fa fa-arrow-up"></button>
+                            { widget.widgetOrder !== 0 &&
+                            <button className="float-right btn btn-warning fa fa-arrow-up"
+                                    onClick={() => {this.props.moveUpWidget(widget.id)}}></button>
+                            }{widget.widgetOrder !== this.props.widgets.length-1 &&
                             <button className="float-right btn btn-warning fa fa-arrow-down"></button>
+                            }
+                            <select className="float-right"
+                                    ref={(node) =>
+                                    {
+                                        this.widgetType =node
+                                    }}
+                                    onChange={(event) => {
+                                        console.log(widget.id +' : '+widget.widgetType + ' : '+ event.target.value);
+                                        this.props.changeWidgetType(widget.id, event.target.value)}}
+                            >
+                                <option value="HEADING">Heading Widget</option>
+                                <option value="PARAGRAPH">Paragraph Widget</option>
+                                <option value="LIST">List Widget</option>
+                                <option value="LINK">Link Widget</option>
+                                <option value="IMAGE">Image Widget</option>
+                            </select>
                             <button onClick={() => {
                                 this.props.deleteWidget(widget.id)
                             }}

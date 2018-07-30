@@ -16,9 +16,54 @@ let initialState = {
 };
 
 let widgetService = WidgetService.instance;
+let fromIndex;
+let toIndex;
+let wdgtBfr;
+let wdgtAfter;
+
+export const updateOrder = (widget,order) => {
+    return {
+        ...widget,
+        widgetOrder:order
+    }
+}
+
+export const updateType = (widget,wdType) => {
+    return {
+        ...widget,
+        widgetType:wdType
+    }
+
+}
 
 export const widgetReducer = (state /*= initialState*/, action) => {
     switch (action.type) {
+        case 'CHANGE_TYPE' :
+            let index = state.widgets.findIndex((wdgt) => wdgt.id === action.widgetID);
+            console.log(index+':'+action.widgetID);
+            return {
+                ...state,
+                widgets:
+                state.widgets.map((wdgt) => {
+                        if (wdgt.id === action.widgetID)
+                            return {...wdgt,
+                                widgetType: action.wdType};
+                        return wdgt;
+                })
+
+            };
+        case 'MOVEUP_WIDGET' :
+            fromIndex = state.widgets.findIndex((wdgt) => wdgt.id === action.widgetId);
+            toIndex = fromIndex-1;
+            return {
+                ...state,
+                widgets:[
+                    ...state.widgets.slice(0,toIndex),
+                    updateOrder(state.widgets[fromIndex],toIndex),
+                    updateOrder(state.widgets[toIndex],fromIndex),
+                    ...state.widgets.slice(fromIndex+1)
+                ]
+            };
         case 'SAVE_WIDGETS':
             return{
                 ...state,
@@ -36,7 +81,7 @@ export const widgetReducer = (state /*= initialState*/, action) => {
                 ...state,
                 widgets: [
                     action.widget,
-                    ...state.widgets,
+                    ...state.widgets.map((wgt) => {return {...wgt,widgetOrder:wgt.widgetOrder+1}}),
 
                 ]
             }
