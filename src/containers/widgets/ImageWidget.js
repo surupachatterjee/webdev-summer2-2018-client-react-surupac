@@ -2,6 +2,7 @@ import React from 'react'
 
 const ImageWidget = ({widget, updateWidget}) => {
     let src;
+    let name;
     return (
         <div>
             <h1>Image Widget({widget.id})</h1>
@@ -17,8 +18,15 @@ const ImageWidget = ({widget, updateWidget}) => {
                     id="url"/> <br/>
             <label htmlFor="iname">Widget Name</label>
             <input className="form-control"
+                   ref={node =>name=node}
                    placeholder="Widget Name"
-                   id="iname"/> <br/>
+                   onChange={() => {
+                       widget.name=name.value
+                       updateWidget(widget)
+                   }}
+                   id="iname"/>
+            <br/>
+
             <h4>Preview</h4>
             {widget.src}
             <div className="embed-responsive embed-responsive-4by3">

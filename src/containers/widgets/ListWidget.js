@@ -2,7 +2,7 @@ import React from 'react'
 
 const ListWidget =({widget ,updateWidget}) => {
     let text;
-    let ordered;
+    let ltype;
     return(
         <div>
             <h1>List Widget({widget.id})</h1>
@@ -20,28 +20,37 @@ const ListWidget =({widget ,updateWidget}) => {
             /><br/>
             <label htmlFor="ltype">List Type</label>
             <select className="form-control"
-                    ref={node => ordered=node}
+                    ref={node => ltype=node}
                     id="ltype"
                     onChange={() =>
                     {
-                        widget.ordered=ordered.value
+                        widget.listType=ltype.value
                         updateWidget(widget)
                     }}>
-                <option value='ul'>Unordered List</option>
-                <option value='ol'>Ordered List</option>
+                <option value="" selected disabled hidden>Choose List Type</option>
+                <option value='UNORDERED'>Unordered List</option>
+                <option value='ORDERED'>Ordered List</option>
 
 
 
             </select>
             <h4>Preview</h4>
-            {widget.ordered ==='ol'  &&
+            {widget.listType === '' &&
+            <ul>
+                {widget.listItems.split('\n').map((item, index) => (
+                        <li key={index}>{item}</li>
+                    )
+                )}
+            </ul>
+            }
+            {widget.listType ==='ORDERED'  &&
             <ol>
                 {widget.listItems.split('\n').map((item,index) => (
                     <li key={index}>{item}</li>
                     )
                 )}
             </ol>}
-            {widget.ordered==='ul' &&
+            {widget.listType==='UNORDERED' &&
             <ul>
                 {widget.listItems.split('\n').map((item,index) => (
                         <li key={index}>{item}</li>

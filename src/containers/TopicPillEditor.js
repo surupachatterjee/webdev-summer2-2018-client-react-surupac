@@ -12,6 +12,7 @@ let initialState = {
     lessonId:'',
     topicId : '',
     widgets: []};
+    preview: 'false'
 let store
     //= createStore(widgetReducer,initialState);
 
@@ -28,11 +29,13 @@ class TopicPillEditor extends React.Component{
             moduleId: '',
             lessonId: '',
             topicId : ''
+
         };
         initialState.courseId = this.props.match.params.courseId;
         initialState.moduleId = this.props.match.params.moduleId;
         initialState.lessonId = this.props.match.params.lessonId;
         initialState.topicId =  this.props.match.params.topicId;
+        initialState.preview = false;
         store = createStore(widgetReducer,initialState);
     }
 

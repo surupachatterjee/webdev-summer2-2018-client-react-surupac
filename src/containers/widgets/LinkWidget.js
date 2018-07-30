@@ -4,6 +4,7 @@ const LinkWidget = ({widget,updateWidget}) =>
 {
     let linkurl;
     let linktext;
+    let name;
     return(
         <div>
             <h1>Link Widget({widget.id})</h1>
@@ -33,6 +34,11 @@ const LinkWidget = ({widget,updateWidget}) =>
 
             <label htmlFor="wname">Widget Name</label>
             <input placeholder="widget Name"
+                   ref={node =>name=node}
+                   onChange={() => {
+                       widget.name=name.value
+                       updateWidget(widget)
+                   }}
                    className="form-control"
                    id="wname"/><br/>
 

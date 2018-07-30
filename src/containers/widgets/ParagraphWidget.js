@@ -1,9 +1,12 @@
 import React from 'react'
 
-const ParagraphWidget = ({widget, updateWidget}) => {
+const ParagraphWidget = ({widget, updateWidget,preview}) => {
     let text;
+    let pname;
     return (
         <div>
+            {!preview &&
+            <div>
             <h1>Paragraph Widget({widget.id})</h1>
             <label htmlFor="ptext">Paragraph Text</label>
             <textarea className="form-control"
@@ -18,8 +21,14 @@ const ParagraphWidget = ({widget, updateWidget}) => {
             <label htmlFor="pname">Widget Name</label>
             <input className="form-control"
                    placeholder="Widget Name"
+                   ref={node =>pname=node}
+                   onChange={() => {
+                       widget.name=pname.value
+                       updateWidget(widget)
+                   }}
                    id="pname"/>
             <h4>Preview</h4>
+            </div>}
             {widget.text}
         </div>
     )

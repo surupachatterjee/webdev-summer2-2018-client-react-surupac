@@ -24,6 +24,11 @@ class WidgetListComponent extends React.Component{
         console.log(this.props.topicId);
         return(
             <div>
+                <button className="btn btn-primary float-right"
+                        onClick={() =>{
+                            console.log(this.props.preview)
+                            this.props.changePreviewStatus()}}>
+                    Preview</button>
                 <button onClick={() => {
                     this.props.saveWidgets(
                         this.props.topicId,
@@ -31,6 +36,7 @@ class WidgetListComponent extends React.Component{
                         className="btn btn-primary float-right">
                  SAVE
                 </button>
+
                 <h1>Widget List ({this.props.widgets.length},{this.props.topicId})</h1>
 
                 <ul className="list-group">
@@ -83,6 +89,7 @@ class WidgetListComponent extends React.Component{
                                         console.log(widget.id +' : '+widget.widgetType + ' : '+ event.target.value);
                                         this.props.changeWidgetType(widget.id, event.target.value)}}
                             >
+                                <option value="" selected disabled hidden>Choose Widget Type</option>
                                 <option value="HEADING">Heading Widget</option>
                                 <option value="PARAGRAPH">Paragraph Widget</option>
                                 <option value="LIST">List Widget</option>
@@ -95,8 +102,8 @@ class WidgetListComponent extends React.Component{
                                     className=" fa fa-times btn btn-danger float-right">
                             </button>
                             <div>
-                                {widget.widgetType === 'HEADING' && <HeadingWidget widget={widget} updateWidget={this.props.updateWidget}/>}
-                                {widget.widgetType === 'PARAGRAPH' && <ParagraphWidget widget={widget} updateWidget={this.props.updateWidget}/>}
+                                {widget.widgetType === 'HEADING' && <HeadingWidget widget={widget} updateWidget={this.props.updateWidget} preview={this.props.preview}/>}
+                                {widget.widgetType === 'PARAGRAPH' && <ParagraphWidget widget={widget} updateWidget={this.props.updateWidget} preview={this.props.preview}/>}
                                 {widget.widgetType === 'LIST' && <ListWidget widget={widget} updateWidget={this.props.updateWidget}/>}
                                 {widget.widgetType === 'LINK' && <LinkWidget widget={widget} updateWidget={this.props.updateWidget}/>}
                                 {widget.widgetType === 'IMAGE' && <ImageWidget widget={widget} updateWidget={this.props.updateWidget}/>}

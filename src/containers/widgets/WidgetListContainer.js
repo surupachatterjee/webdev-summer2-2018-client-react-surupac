@@ -11,7 +11,8 @@ const  stateToPropertyMapper = (state) =>{
             moduleId: state.moduleId,
             lessonId: state.lessonId,
             topicId: state.topicId,
-            widgets : state.widgets
+            widgets : state.widgets,
+            preview:state.preview
         }
     );
 }
@@ -20,6 +21,11 @@ const dispatcherToPropertyMapper = (dispatch,state) => {
     console.log("inside dispatcherToPropertyMapper");
     return(
         {
+            changePreviewStatus :() => dispatch(
+                {
+                    type:'CHANGE_PREVIEW'
+                }
+            ),
             deleteWidget: (wid) => {
                 widgetService.deleteWidgetByID(wid)
                     .then(() => dispatch({

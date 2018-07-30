@@ -38,6 +38,12 @@ export const updateType = (widget,wdType) => {
 
 export const widgetReducer = (state /*= initialState*/, action) => {
     switch (action.type) {
+        case 'CHANGE_PREVIEW':
+            console.log(state.preview)
+            return{
+                ...state,
+                preview:!state.preview
+            }
         case 'CHANGE_TYPE' :
             let index = state.widgets.findIndex((wdgt) => wdgt.id === action.widgetID);
             console.log(index+':'+action.widgetID);
