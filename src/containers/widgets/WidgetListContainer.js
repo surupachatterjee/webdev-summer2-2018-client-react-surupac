@@ -1,5 +1,8 @@
 import {connect} from 'react-redux'
 import WidgetListComponent from './WidgetListComponent'
+import WidgetService from '../../services/WidgetService';
+
+let widgetService = WidgetService.instance;
 
 const  stateToPropertyMapper = (state) =>{
     console.log("in stateToPropertyMapper");
@@ -13,14 +16,17 @@ const  stateToPropertyMapper = (state) =>{
     );
 }
 
-const dispatcherToPropertyMapper = (dispatch) => {
+const dispatcherToPropertyMapper = (dispatch,state) => {
     console.log("inside dispatcherToPropertyMapper");
     return(
         {
-            deleteWidget: (wid) => dispatch({
-                type :'DELETE_WIDGET',
-                widgetId : wid
-            }),
+            deleteWidget: (wid) => {
+                widgetService.deleteWidgetByID(wid)
+                    .then(() => dispatch({
+                        type :'DELETE_WIDGET',
+                        widgetId : wid
+                    }))
+            },
             createWidget: (widget) => dispatch(
                 {
                     type: 'CREATE_WIDGET',
@@ -32,13 +38,20 @@ const dispatcherToPropertyMapper = (dispatch) => {
                     widget: widget
                 }
             ),
-            saveWidgets: ()=> dispatch(
-                {
-                    type:'SAVE_WIDGETS'
-
-                }
-            )
-
+            saveWidgets: (topicId,widgets)=> {
+                widgetService.upsertWidgets(topicId,widgets)
+                    .then(createdWidgets => dispatch({
+                        type:'SAVE_WIDGETS',
+                        widgets:createdWidgets
+                    }))
+            },
+            loadAllWidgets: (topicID) => {
+                widgetService.findAllWidgetsForTopic(topicID)
+                    .then(widgetsFrmDB => dispatch({
+                        type:'FINDALL_WIDGETS_FOR_TOPIC',
+                        widgets: widgetsFrmDB
+                    }))
+            }
         }
     )
 }

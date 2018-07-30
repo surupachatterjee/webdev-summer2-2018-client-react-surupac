@@ -1,3 +1,5 @@
+import WidgetService from '../services/WidgetService';
+
 let initialState = {
     courseId: '',
     moduleId:'',
@@ -13,32 +15,25 @@ let initialState = {
     ]
 };
 
+let widgetService = WidgetService.instance;
 
 export const widgetReducer = (state /*= initialState*/, action) => {
     switch (action.type) {
         case 'SAVE_WIDGETS':
-            console.log("IN Save Widgets" + state.topicId);
-            fetch('http://localhost:8080/api/topic/' + state.topicId + '/widget' ,{
-                method:'POST',
-                headers:{
-                    'Content-Type': 'application/json'
-                },
-                body:JSON.stringify(state.widgets)
-            });
-            console.log();
-            return state;
+            return{
+                ...state,
+                widgets:action.widgets
+            }
         case 'DELETE_WIDGET':
             return {
+                ...state,
                 widgets: state.widgets.filter(
                     widget => widget.id !== action.widgetId
                 )
             }
         case 'CREATE_WIDGET':
             return {
-                courseId: state.courseId,
-                moduleId: state.moduleId,
-                lessonId: state.lessonId,
-                topicId : state.topicId,
+                ...state,
                 widgets: [
                     action.widget,
                     ...state.widgets,
@@ -47,10 +42,7 @@ export const widgetReducer = (state /*= initialState*/, action) => {
             }
         case 'UPDATE_WIDGET':
             return {
-                courseId: state.courseId,
-                moduleId: state.moduleId,
-                lessonId: state.lessonId,
-                topicId : state.topicId,
+                ...state,
                 widgets: state.widgets.map(
                     widget => {
                         if (widget.id === action.widget.id) {
@@ -61,7 +53,12 @@ export const widgetReducer = (state /*= initialState*/, action) => {
                     }
                 )
             }
-
+        case 'FINDALL_WIDGETS_FOR_TOPIC':
+            //state.widgets = widgetService.findAllWidgetsForTopic(state.topicId);
+            return {
+                ...state,
+                widgets: action.widgets
+            }
         default :
             return state
     }

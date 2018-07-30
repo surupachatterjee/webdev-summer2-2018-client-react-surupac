@@ -7,7 +7,7 @@ const HeadingWidget = ({widget, updateWidget}) => {
     let name;
     return (
         <div>
-            <h1>Heading Widget</h1>
+            <h1>Heading Widget({widget.id})</h1>
             <label htmlFor="htext">Heading Text</label>
             <input placeholder="Heading Text"
                    ref={node => text =node}

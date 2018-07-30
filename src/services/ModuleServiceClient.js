@@ -1,12 +1,12 @@
-/*
 const MODULE_API_URL ='http://localhost:8080/api/course/CID/module';
 const MODULE_API_URLD = 'http://localhost:8080/api/module/MODULE_ID';
 const BASE_MODULE_URL ="http://localhost:8080/api/"
-*/
 
+/*
 const MODULE_API_URL ='https://course-management-stc.herokuapp.com/api/course/CID/module';
 const MODULE_API_URLD = 'https://course-management-stc.herokuapp.com/api/module/MODULE_ID';
 const BASE_MODULE_URL ="https://course-management-stc.herokuapp.com/api/";
+*/
 
 
 let _singleton = Symbol();

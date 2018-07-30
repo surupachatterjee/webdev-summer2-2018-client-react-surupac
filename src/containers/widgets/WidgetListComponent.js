@@ -4,6 +4,7 @@ import ParagraphWidget from './ParagraphWidget'
 import ListWidget from "./ListWidget";
 import ImageWidget from "./ImageWidget";
 import LinkWidget from './LinkWidget'
+import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 
 
 class WidgetListComponent extends React.Component{
@@ -14,6 +15,8 @@ class WidgetListComponent extends React.Component{
         let widgetTitle;
         let widgetType;
         let topicIDN;
+        this.props.loadAllWidgets(this.props.topicId);
+        console.log("Widgets count in Component:" +this.props.widgets.length);
     }
 
     render()
@@ -21,7 +24,11 @@ class WidgetListComponent extends React.Component{
         console.log(this.props.topicId);
         return(
             <div>
-                <button onClick={() => {this.props.saveWidgets()}}>
+                <button onClick={() => {
+                    this.props.saveWidgets(
+                        this.props.topicId,
+                        this.props.widgets)}}
+                        className="btn btn-primary float-right">
                  SAVE
                 </button>
                 <h1>Widget List ({this.props.widgets.length},{this.props.topicId})</h1>
@@ -37,7 +44,7 @@ class WidgetListComponent extends React.Component{
                                 {
                                     let widget ={
                                         title : this.widgetTitle.value,
-                                        id : this.props.widgets.length+1,
+                                        id : -1* (this.props.widgets.length+1),
                                         widgetType:this.widgetType.value
                                     }
                                     this.props.createWidget(widget)
@@ -59,11 +66,13 @@ class WidgetListComponent extends React.Component{
                     {this.props.widgets.map((widget, index) =>
                         <li className="list-group-item"
                             key={index}>
-                            {widget.title} {/*- {widget.id} - {widget.widgetType}*/}
+                            {widget.title}
+                            <button className="float-right btn btn-warning fa fa-arrow-up"></button>
+                            <button className="float-right btn btn-warning fa fa-arrow-down"></button>
                             <button onClick={() => {
                                 this.props.deleteWidget(widget.id)
                             }}
-                                    className="btn btn-danger float-right">Delete
+                                    className=" fa fa-times btn btn-danger float-right">
                             </button>
                             <div>
                                 {widget.widgetType === 'HEADING' && <HeadingWidget widget={widget} updateWidget={this.props.updateWidget}/>}
@@ -78,7 +87,6 @@ class WidgetListComponent extends React.Component{
 
                     )}
                 </ul>
-
             </div>)
     }
 }

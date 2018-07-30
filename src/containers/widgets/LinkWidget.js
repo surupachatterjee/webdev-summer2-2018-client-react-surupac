@@ -6,7 +6,7 @@ const LinkWidget = ({widget,updateWidget}) =>
     let linktext;
     return(
         <div>
-            <h1>Link Widget</h1>
+            <h1>Link Widget({widget.id})</h1>
             <label htmlFor="linkurl">Link URL</label>
             <input placeholder="Link URL"
                    className="form-control"

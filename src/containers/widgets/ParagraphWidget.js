@@ -4,7 +4,7 @@ const ParagraphWidget = ({widget, updateWidget}) => {
     let text;
     return (
         <div>
-            <h1>Paragraph Widget</h1>
+            <h1>Paragraph Widget({widget.id})</h1>
             <label htmlFor="ptext">Paragraph Text</label>
             <textarea className="form-control"
                       placeholder="Paragraph Text"

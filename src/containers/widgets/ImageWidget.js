@@ -4,7 +4,7 @@ const ImageWidget = ({widget, updateWidget}) => {
     let src;
     return (
         <div>
-            <h1>Image Widget</h1>
+            <h1>Image Widget({widget.id})</h1>
             <label htmlFor="url">Image URL</label>
             <input className="form-control"
                    ref={node => src=node}

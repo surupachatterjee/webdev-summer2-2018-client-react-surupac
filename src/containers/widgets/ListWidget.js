@@ -5,7 +5,7 @@ const ListWidget =({widget ,updateWidget}) => {
     let ordered;
     return(
         <div>
-            <h1>List Widget</h1>
+            <h1>List Widget({widget.id})</h1>
             <label htmlFor="ltext">List Text</label>
             <textarea className="form-control"
                       placeholder="Enter one list item per line"
