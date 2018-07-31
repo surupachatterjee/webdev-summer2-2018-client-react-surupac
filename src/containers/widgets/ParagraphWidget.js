@@ -5,9 +5,10 @@ const ParagraphWidget = ({widget, updateWidget,preview}) => {
     let pname;
     return (
         <div>
+
+            <h1>Paragraph Widget({widget.id}) - {widget.name}</h1>
             {!preview &&
             <div>
-            <h1>Paragraph Widget({widget.id})</h1>
             <label htmlFor="ptext">Paragraph Text</label>
             <textarea className="form-control"
                       placeholder="Paragraph Text"

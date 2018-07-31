@@ -1,11 +1,13 @@
 import React from 'react'
 
-const ImageWidget = ({widget, updateWidget}) => {
+const ImageWidget = ({widget, updateWidget,preview}) => {
     let src;
     let name;
     return (
         <div>
-            <h1>Image Widget({widget.id})</h1>
+            <h1>Image Widget({widget.id}) - {widget.name}</h1>
+            {!preview &&
+            <div>
             <label htmlFor="url">Image URL</label>
             <input className="form-control"
                    ref={node => src=node}
@@ -28,6 +30,7 @@ const ImageWidget = ({widget, updateWidget}) => {
             <br/>
 
             <h4>Preview</h4>
+            </div>}
             {widget.src}
             <div className="embed-responsive embed-responsive-4by3">
                 <iframe
@@ -40,6 +43,7 @@ const ImageWidget = ({widget, updateWidget}) => {
                 </iframe>
             </div>
         </div>
+
     )
 };
 

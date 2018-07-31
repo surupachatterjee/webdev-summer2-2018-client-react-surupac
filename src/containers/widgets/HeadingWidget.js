@@ -8,7 +8,10 @@ const HeadingWidget = ({widget, updateWidget,preview}) => {
     return (
         <div>
 
-            <h1>Heading Widget({widget.id})</h1>
+
+            <h1>{widget.name}</h1>
+            {!preview &&
+            <div>
             <label htmlFor="htext">Heading Text</label>
             <input placeholder="Heading Text"
                    ref={node => htext =node}
@@ -45,6 +48,7 @@ const HeadingWidget = ({widget, updateWidget,preview}) => {
                    id="hname"/>
 
             <h4>Preview</h4>
+            </div>}
             {widget.size===''&& <h1>{widget.text}</h1> }
             {widget.size === 1 && <h1>{widget.text}</h1>}
             {widget.size === 2 && <h2>{widget.text}</h2>}

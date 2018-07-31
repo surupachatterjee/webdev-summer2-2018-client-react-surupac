@@ -1,11 +1,13 @@
 import React from 'react'
 
-const ListWidget =({widget ,updateWidget}) => {
+const ListWidget =({widget ,updateWidget,preview}) => {
     let text;
     let ltype;
     return(
         <div>
-            <h1>List Widget({widget.id})</h1>
+            <h1>List Widget({widget.id}) - {widget.name}</h1>
+            {!preview &&
+            <div>
             <label htmlFor="ltext">List Text</label>
             <textarea className="form-control"
                       placeholder="Enter one list item per line"
@@ -35,6 +37,7 @@ const ListWidget =({widget ,updateWidget}) => {
 
             </select>
             <h4>Preview</h4>
+            </div>}
             {widget.listType === '' &&
             <ul>
                 {widget.listItems.split('\n').map((item, index) => (
