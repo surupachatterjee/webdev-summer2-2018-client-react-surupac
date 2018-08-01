@@ -5,6 +5,8 @@ import ListWidget from "./ListWidget";
 import ImageWidget from "./ImageWidget";
 import LinkWidget from './LinkWidget'
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
+import Toggle from 'react-toggle'
+import '../../css/toggle.css'
 
 
 class WidgetListComponent extends React.Component{
@@ -26,22 +28,33 @@ class WidgetListComponent extends React.Component{
         console.log(this.props.topicId);
         return(
             <div>
-                <button className="btn btn-primary float-right"
+                <div className="float-right">
+                <label>
+                    <Toggle
+                        className="react-toggle pull-right"
+                        defaultChecked={this.props.preview}
+                        onChange={() =>{
+                            console.log(this.props.preview)
+                            this.props.changePreviewStatus()}} />
+                    <span>Preview</span>
+                </label>
+                {/*<button className="btn btn-primary float-right"
                         onClick={() =>{
                             console.log(this.props.preview)
                             this.props.changePreviewStatus()}}>
-                    Preview</button>
+                    Preview</button>*/}
                 {!this.props.preview &&
                 <button onClick={() => {
                     this.props.saveWidgets(
                         this.props.topicId,
                         this.props.widgets)}}
-                        className="btn btn-primary float-right">
-                    SAVE
+                        className="btn btn-secondary float-right">
+                    Save
                 </button>}
+                </div>
 
                 {/*<h1>Widget List ({this.props.widgets.length},{this.props.topicId})</h1>*/}
-
+                <div>
                 <ul className="list-group">
                     {!this.props.preview &&
                     <li className="list-group-item">
@@ -52,7 +65,7 @@ class WidgetListComponent extends React.Component{
                                 className="form-control"
                                 placeholder="Enter Widget Title"/>
                             <div className="input-group-append">
-                        <button className="btn btn-success float-right"
+                        <button className="btn btn-success float-right fa fa-plus"
                                 onClick={() =>
                                 {
                                     let widget ={
@@ -63,7 +76,7 @@ class WidgetListComponent extends React.Component{
                                     }
                                     this.props.createWidget(widget)
                                     this.widgetTitle.value=''
-                                }}>Add Widget
+                                }}>
                         </button>
                             </div>
                         </div>
@@ -122,6 +135,7 @@ class WidgetListComponent extends React.Component{
 
                     )}
                 </ul>
+                </div>
             </div>)
     }
 }
