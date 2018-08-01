@@ -1,9 +1,7 @@
-const LESSON_API_URL = "http://localhost:8080/api/course/CID/module/MID/lesson";
-const BASE_URL = "http://localhost:8080/api";
-/*
+/*const LESSON_API_URL = "http://localhost:8080/api/course/CID/module/MID/lesson";
+const BASE_URL = "http://localhost:8080/api";*/
 const LESSON_API_URL = "https://course-management-stc.herokuapp.com/api/course/CID/module/MID/lesson/";
 const BASE_URL= "https://course-management-stc.herokuapp.com/api";
-*/
 
 let _singleton = Symbol();
 export default class LessonServiceClient {

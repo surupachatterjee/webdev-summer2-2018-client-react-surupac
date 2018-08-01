@@ -15,7 +15,7 @@ export default class TopicService {
     }
 
     upsertWidgets(topicID,widgets){
-        return fetch('http://localhost:8080/api/topic/' + topicID+ '/widget' ,{
+        return fetch(BASE_URL+'topic/' + topicID+ '/widget' ,{
             method:'POST',
             headers:{
                 'Content-Type': 'application/json'
@@ -27,14 +27,14 @@ export default class TopicService {
     }
 
     findAllWidgetsForTopic(topicID){
-        return fetch('http://localhost:8080/api/topic/' + topicID+ '/widget'
+        return fetch(BASE_URL+'topic/' + topicID+ '/widget'
         ).then(function (response){
             return response.json();
         });
     }
 
     deleteWidgetByID(widgetId){
-        return fetch('http://localhost:8080/api/widget/' + widgetId,{
+        return fetch(BASE_URL + '/widget/' + widgetId,{
             method:'DELETE'
         });
     }

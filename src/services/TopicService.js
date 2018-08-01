@@ -1,7 +1,7 @@
-const TOPIC_API_URL = "http://localhost:8080/api/course/CID/module/MID/lesson/LID/topic";
-const BASE_URL ="http://localhost:8080/api/";
-//const TOPIC_API_URL = "https://course-management-stc.herokuapp.com/api/course/CID/module/MID/lesson/LID/topic";
-//const BASE_URL ="https://course-management-stc.herokuapp.com/api/";
+/*const TOPIC_API_URL = "http://localhost:8080/api/course/CID/module/MID/lesson/LID/topic";
+const BASE_URL ="http://localhost:8080/api/";*/
+const TOPIC_API_URL = "https://course-management-stc.herokuapp.com/api/course/CID/module/MID/lesson/LID/topic";
+const BASE_URL ="https://course-management-stc.herokuapp.com/api/";
 
 
 
