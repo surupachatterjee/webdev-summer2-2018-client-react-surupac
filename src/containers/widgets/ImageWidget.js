@@ -1,37 +1,38 @@
 import React from 'react'
 
-const ImageWidget = ({widget, updateWidget,preview}) => {
+const ImageWidget = ({widget, updateWidget, preview}) => {
     let src;
     let name;
     return (
         <div>
-            <h1>Image Widget({widget.id}) - {widget.name}</h1>
             {!preview &&
             <div>
-            <label htmlFor="url">Image URL</label>
-            <input className="form-control"
-                   ref={node => src=node}
-                   onChange={() =>
-                   {
-                       widget.src = src.value;
-                       updateWidget(widget);
-                   }}
-                    placeholder="Enter Image URL  here"
-                    id="url"/> <br/>
-            <label htmlFor="iname">Widget Name</label>
-            <input className="form-control"
-                   ref={node =>name=node}
-                   placeholder="Widget Name"
-                   onChange={() => {
-                       widget.name=name.value
-                       updateWidget(widget)
-                   }}
-                   id="iname"/>
-            <br/>
+                <h1>Image Widget</h1>
+                <label htmlFor="url">Image URL</label>
+                <input className="form-control"
+                       ref={node => src = node}
+                       defaultValue={widget.src}
+                       onChange={() => {
+                           widget.src = src.value;
+                           updateWidget(widget);
+                       }}
+                       placeholder="Enter Image URL  here"
+                       id="url"/> <br/>
+                <label htmlFor="iname">Widget Name</label>
+                <input className="form-control"
+                       ref={node => name = node}
+                       defaultValue={widget.name}
+                       placeholder="Widget Name"
+                       onChange={() => {
+                           widget.name = name.value
+                           updateWidget(widget)
+                       }}
+                       id="iname"/>
+                <br/>
 
-            <h4>Preview</h4>
+                <h4>Preview</h4>
             </div>}
-            {widget.src}
+            {/*{widget.src}*/}
             <div className="embed-responsive embed-responsive-4by3">
                 <iframe
                     className="embed-responsive-item"
