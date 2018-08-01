@@ -58,6 +58,18 @@ export const widgetReducer = (state /*= initialState*/, action) => {
                 })
 
             };
+        case 'MOVEDOWN_WIDGET' :
+            fromIndex = state.widgets.findIndex((wdgt) => wdgt.id === action.widgetId);
+            toIndex = fromIndex+1;
+            return {
+                ...state,
+                widgets:[
+                    ...state.widgets.slice(0,fromIndex),
+                    updateOrder(state.widgets[toIndex],fromIndex),
+                    updateOrder(state.widgets[fromIndex],toIndex),
+                    ...state.widgets.slice(toIndex+1)
+                ]
+            };
         case 'MOVEUP_WIDGET' :
             fromIndex = state.widgets.findIndex((wdgt) => wdgt.id === action.widgetId);
             toIndex = fromIndex-1;

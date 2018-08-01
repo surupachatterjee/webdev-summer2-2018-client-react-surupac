@@ -37,6 +37,10 @@ const dispatcherToPropertyMapper = (dispatch,state) => {
                 type: 'MOVEUP_WIDGET',
                 widgetId: wid
             }),
+            moveDownWidget: (wid) => dispatch({
+                type: 'MOVEDOWN_WIDGET',
+                widgetId: wid
+            }),
             changeWidgetType : (wid,wType) => dispatch({
                 type: 'CHANGE_TYPE',
                 widgetID: wid,

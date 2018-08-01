@@ -98,9 +98,10 @@ class WidgetListComponent extends React.Component{
                             {widget.title}
                             { widget.widgetOrder !== 0 && !this.props.preview &&
                             <button className="float-right btn btn-warning fa fa-arrow-up"
-                                    onClick={() => {this.props.moveUpWidget(widget.id)}}></button>
+                                    onClick={() => {this.props.moveUpWidget(widget.id)}}/>
                             }{widget.widgetOrder !== this.props.widgets.length-1 && !this.props.preview &&
-                        <button className="float-right btn btn-warning fa fa-arrow-down"></button>
+                        <button className="float-right btn btn-warning fa fa-arrow-down"
+                                onClick={() => {this.props.moveDownWidget(widget.id)}}/>
                         }
                             {!this.props.preview &&
                             <select className="float-right"
