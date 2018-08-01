@@ -3,9 +3,8 @@ import '../../node_modules/font-awesome/css/font-awesome.min.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap.css'
 import LessonServiceClient from "../services/LessonServiceClient";
 import TabItem from "../components/TabItem";
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import LessonEditor from "./LessonEditor";
-
 
 class LessonTabs extends React.Component {
     constructor(props) {
@@ -16,7 +15,8 @@ class LessonTabs extends React.Component {
             lesson: {
                 title: 'Untitled Lesson',
                 lessonId :''},
-            lessons: []
+            lessons: [],
+            selectedLID: ''
         };
         this.setCourseId = this.setCourseId.bind(this);
         this.setModuleId = this.setModuleId.bind(this);
@@ -26,6 +26,14 @@ class LessonTabs extends React.Component {
         this.findAllLessonsForModule = this.findAllLessonsForModule.bind(this);
         this.lessonService = LessonServiceClient.instance;
 
+    }
+
+    isSelected(id) {
+        return this.state.selectedLID === id;
+    }
+
+    setSelectedLesson(selectedLessonId) {
+        this.setState({ selectedLID: selectedLessonId });
     }
 
     setCourseId(courseId) {
@@ -39,11 +47,13 @@ class LessonTabs extends React.Component {
     }
 
     componentDidMount() {
+
         this.setCourseId(this.props.courseId);
         this.setModuleId(this.props.moduleId);
     }
 
     componentWillReceiveProps(newProps) {
+        console.log("componentWillReceiveProps of LessonTabs" + newProps.courseId + ": " + newProps.moduleId);
         this.setCourseId(newProps.courseId);
         this.setModuleId(newProps.moduleId);
         this.findAllLessonsForModule(newProps.courseId, newProps.moduleId);
@@ -93,6 +103,7 @@ class LessonTabs extends React.Component {
             .findAllLessonsForModule(
                 courseId, moduleId)
             .then((lessons) => {
+                console.log(lessons);
                 this.setLessons(lessons)
             });
     }
@@ -102,8 +113,9 @@ class LessonTabs extends React.Component {
     }
 
     render() {
+        console.log("inside lesson tabs render : " + this.state.courseId + " : " +this.state.moduleId + " : "+ this.state.lesson.lessonId);
         return (
-            <Router>
+            <Router >
                 <div>
 
                 <ul className="nav nav-tab nav-justified ">
@@ -111,27 +123,32 @@ class LessonTabs extends React.Component {
                     <button className="fa fa-plus btn-secondary" onClick={this.createLesson}></button>
                 </ul>
                     <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
-                           component={LessonEditor}/>
+                           component={LessonEditor} />
                 </div>
             </Router>
         );
     }
 
     renderTab() {
-        var tabs =
-            this.state.lessons.map((lesson) => {
-                return  <TabItem key={lesson.id}
-                                courseId={this.state.courseId}
-                                moduleId={this.state.moduleId}
-                                lesson={lesson}
-                                delete={this.deleteLesson}
-                                edit={this.updateLesson}
-                />
+        if (this.state.lessons && this.state.lessons.length > 0) {
+            var tabs =
+                this.state.lessons.map((lesson) => {
+                    return <TabItem key={lesson.id}
+                                    courseId={this.state.courseId}
+                                    moduleId={this.state.moduleId}
+                                    lesson={lesson}
+                                    delete={this.deleteLesson}
+                                    edit={this.updateLesson}
+                                    isSelected={this.isSelected(lesson.id)}
+                                    setSelectedLesson={this.setSelectedLesson}
 
-            });
-        return tabs;
+                    />
+
+                });
+            return tabs;
+
+        }
     }
-
 }
 
 export default LessonTabs;

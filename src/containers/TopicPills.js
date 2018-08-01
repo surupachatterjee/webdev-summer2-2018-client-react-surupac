@@ -11,7 +11,7 @@ import {createStore} from 'redux'
 import {widgetReducer} from "../reducers/widgetReducer";
 
 
-let store = createStore(widgetReducer);
+//let store = createStore(widgetReducer);
 
 class TopicPills extends React.Component {
 
@@ -58,25 +58,38 @@ class TopicPills extends React.Component {
     }
 
     setTopics(topics) {
+        //console.log(topics);
         this.setState(
             {topics: topics}
         )
     }
 
     componentDidMount() {
-        this.setCourseId(this.props.courseId);
+        this.setState({courseId:this.props.courseId});
+        this.setState({moduleId:this.props.moduleId});
+        this.setState({lessonId:this.props.lessonId});
+        /*this.setCourseId(this.props.courseId);
         this.setModuleId(this.props.moduleId);
-        this.setLessonId(this.props.lessonId);
+        this.setLessonId(this.props.lessonId);*/
+        //this.findAllTopicsForLesson(this.props.courseId,this.props.moduleId,this.props.lessonId);
     }
 
     componentWillReceiveProps(newProps) {
-        this.setCourseId(newProps.courseId);
+        console.log("inside componentWillReceiveProps of TopicPills");
+        console.log("inside topics pill : " + newProps.courseId + " : "+ newProps.moduleId + ": " + newProps.lessonId);
+        /*this.setCourseId(newProps.courseId);
         this.setModuleId(newProps.moduleId);
-        this.setLessonId(newProps.lessonId);
+        this.setLessonId(newProps.lessonId);*/
+
+        this.setState({courseId:newProps.courseId});
+        this.setState({moduleId:newProps.moduleId});
+        this.setState({lessonId:newProps.lessonId});
+
         this.findAllTopicsForLesson(
             newProps.courseId,
             newProps.moduleId,
             newProps.lessonId);
+
     }
 
 
@@ -87,6 +100,7 @@ class TopicPills extends React.Component {
                 moduleId,
                 lessonId
             ).then((topics) => {
+                console.log(topics);
             this.setTopics(topics)
         });
 
@@ -175,18 +189,20 @@ class TopicPills extends React.Component {
 
 
     renderTopics() {
-        var topics = this.state.topics.map((topic) => {
-            return (
-                <TopicPillItem key={topic.id}
-                               courseId={this.state.courseId}
-                               moduleId={this.state.moduleId}
-                               lessonId={this.state.lessonId}
-                               topic={topic}
-                               delete={this.deleteTopic}
-                                edit={this.updateTopic}/>
-            )
-        });
-        return <ul className="nav nav-pills">{topics}</ul>;
+        if (this.state.topics && this.state.topics.length > 0) {
+            var topics = this.state.topics.map((topic) => {
+                return (
+                    <TopicPillItem key={topic.id}
+                                   courseId={this.state.courseId}
+                                   moduleId={this.state.moduleId}
+                                   lessonId={this.state.lessonId}
+                                   topic={topic}
+                                   delete={this.deleteTopic}
+                                   edit={this.updateTopic}/>
+                )
+            });
+            return <ul className="nav nav-pills">{topics}</ul>;
+        }
     }
 
 }

@@ -4,15 +4,26 @@ import WidgetService from '../../services/WidgetService';
 
 let widgetService = WidgetService.instance;
 
-const  stateToPropertyMapper = (state) =>{
+
+
+const  stateToPropertyMapper = (state,ownProps) =>{
     console.log("in stateToPropertyMapper");
+    console.log(ownProps.topicId);
     return({
-            courseId: state.courseId,
+            /*courseId: state.courseId,
             moduleId: state.moduleId,
             lessonId: state.lessonId,
             topicId: state.topicId,
             widgets : state.widgets,
-            preview:state.preview
+            preview:state.preview,
+            newTopicId:ownProps.topicId*/
+
+           topicId:ownProps.topicId,
+            widgets : state.widgets,
+            preview:state.preview,
+            receivedTopicId:ownProps.topicId
+
+
         }
     );
 }
@@ -24,6 +35,12 @@ const dispatcherToPropertyMapper = (dispatch,state) => {
             changePreviewStatus :() => dispatch(
                 {
                     type:'CHANGE_PREVIEW'
+                }
+            ),
+            setTopic:(topicId)=>dispatch(
+                {
+                    type:'SET_TOPICID',
+                    topicId: topicId
                 }
             ),
             deleteWidget: (wid) => {

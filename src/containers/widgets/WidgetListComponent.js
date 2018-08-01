@@ -12,7 +12,7 @@ import '../../css/toggle.css'
 class WidgetListComponent extends React.Component{
     constructor(props)
     {
-        super(props)
+        super(props);
         console.log(this.props.topicId);
         let widgetTitle;
         let widgetType;
@@ -21,6 +21,24 @@ class WidgetListComponent extends React.Component{
         console.log("Widgets count in Component:" +this.props.widgets.length);
     }
 
+    /*componentWillReceiveProps(myProps)
+    {
+        if(myProps.topicId !== this.props.topicId)
+        {
+            this.props.setTopic(myProps.topicId);
+            this.props.loadAllWidgets(myProps.topicId);
+        }
+       this.props.setTopic(myProps.topicId);
+        this.props.loadAllWidgets(myProps.topicId);
+    }*/
+
+    componentWillReceiveProps(myProps)
+    {
+        if(myProps.topicId !== this.props.topicId){
+            myProps.setTopic(myProps.topicId);
+            myProps.loadAllWidgets(myProps.topicId);
+        }
+    }
 
 
     render()
@@ -29,30 +47,29 @@ class WidgetListComponent extends React.Component{
         return(
             <div>
                 <div className="float-right">
-                <label>
-                    <Toggle
-                        className="react-toggle pull-right"
-                        defaultChecked={this.props.preview}
-                        onChange={() =>{
-                            console.log(this.props.preview)
-                            this.props.changePreviewStatus()}} />
-                    <span>Preview</span>
-                </label>
-                {/*<button className="btn btn-primary float-right"
+                    <label>
+                        <Toggle
+                            className="react-toggle pull-right"
+                            defaultChecked={this.props.preview}
+                            onChange={() =>{
+                                console.log(this.props.preview)
+                                this.props.changePreviewStatus()}} />
+                        <span>Preview</span>
+                    </label>
+                    {/*<button className="btn btn-primary float-right"
                         onClick={() =>{
                             console.log(this.props.preview)
                             this.props.changePreviewStatus()}}>
                     Preview</button>*/}
-                {!this.props.preview &&
-                <button onClick={() => {
-                    this.props.saveWidgets(
-                        this.props.topicId,
-                        this.props.widgets)}}
-                        className="btn btn-secondary float-right">
-                    Save
-                </button>}
+                    {!this.props.preview &&
+                    <button onClick={() => {
+                        this.props.saveWidgets(
+                            this.props.topicId,
+                            this.props.widgets)}}
+                            className="btn btn-success float-right">
+                        Save
+                    </button>}
                 </div>
-
                 {/*<h1>Widget List ({this.props.widgets.length},{this.props.topicId})</h1>*/}
                 <div>
                 <ul className="list-group">
@@ -65,7 +82,7 @@ class WidgetListComponent extends React.Component{
                                 className="form-control"
                                 placeholder="Enter Widget Title"/>
                             <div className="input-group-append">
-                        <button className="btn btn-success float-right fa fa-plus"
+                        <button className="btn btn-success fa fa-plus float-right"
                                 onClick={() =>
                                 {
                                     let widget ={
@@ -92,7 +109,8 @@ class WidgetListComponent extends React.Component{
                             <option value="IMAGE">Image Widget</option>
                         </select>
                     </li>}
-                    {this.props.widgets.map((widget, index) =>
+                    {this.props.widgets.length > 0 &&
+                    this.props.widgets.map((widget, index) =>
                         <li className="list-group-item"
                             key={index}>
                             {widget.title}

@@ -2,16 +2,21 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import '../css/topicpillitem.css'
 
+
 class TabItem extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            currTitle: ''
+            currTitle: '',
+
+
         };
+        console.log("Inside the contsrcutor of tab item");
 
         this.setCurrTitle = this.setCurrTitle.bind(this);
     }
+
 
     setCurrTitle(event) {
         this.setState({currTitle: event.target.value})
@@ -19,10 +24,11 @@ class TabItem extends React.Component {
 
 
     render() {
+        console.log("inside tab items"  +  this.props.courseId + " : " + this.props.moduleId + ": "+this.props.lesson.id);
         return (
             <ul className=" nav nav-tabs">
                 <li className="nav-item">
-                    <span className="nav-link active">
+                    <span className="nav-link">
                     <Link
                         to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lesson.id}`}>
                         <input defaultValue={this.props.lesson.title}
@@ -43,6 +49,7 @@ class TabItem extends React.Component {
                                     this.props.edit(this.props.lesson.id,
                                         this.props.lesson.title)}}>
                         </button>
+
                     </span>
 
                 </li>

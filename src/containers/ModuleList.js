@@ -5,14 +5,15 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 import ModuleEditor from './ModuleEditor'
 
 
-
 class ModuleList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             courseId: '',
-            module: {title: '',
-                moduleId:''},
+            module: {
+                title: '',
+                moduleId: ''
+            },
             modules: []
         };
         this.setCourseId =
@@ -23,7 +24,7 @@ class ModuleList extends React.Component {
             this.createModule.bind(this);
         this.deleteModule = this.deleteModule.bind(this);
         this.updateModule = this.updateModule.bind(this);
-        this.saveModule =this.saveModule.bind(this);
+        this.saveModule = this.saveModule.bind(this);
 
         this.moduleService = ModuleServiceClient.instance;
 
@@ -35,32 +36,33 @@ class ModuleList extends React.Component {
         this.setState({courseId: courseId});
     }
 
-    setModuleTitle(module,id) {
+    setModuleTitle(module, id) {
         this.setState({
             module: {
-                moduleId:id,
+                moduleId: id,
                 title: module.title
             }
         })
     }
 
-    saveModule(event)
-    {
+    saveModule(event) {
 
         this.setState(
             {
-                module:{
-                    title:event.target.value,
-                    moduleId:this.state.module.moduleId
+                module: {
+                    title: event.target.value,
+                    moduleId: this.state.module.moduleId
 
                 }
             }
         )
-        console.log(event.target.value +":"+ this.state.module.moduleId);
+        console.log(event.target.value + ":" + this.state.module.moduleId);
     }
 
 
     createModule() {
+        console.log(this.state.module.title)
+        this.setModuleTitle(this.state.module, this.state.module.moduleId);
         this.moduleService
             .createModule
             (this.state.courseId,
@@ -81,10 +83,9 @@ class ModuleList extends React.Component {
             });
     }
 
-    updateModule()
-    {
-        console.log("updateModule : " +this.state.module.title+
-          ":" + this.state.module.moduleId);
+    updateModule() {
+        console.log("updateModule : " + this.state.module.title +
+            ":" + this.state.module.moduleId);
         this.moduleService
             .updateModule(this.state.module.moduleId,
                 this.state.module)
@@ -137,13 +138,13 @@ class ModuleList extends React.Component {
                                    onChange={this.saveModule}/>
                             <div className="input-group-append">
                                 <button onClick={this.createModule}
-                                className="fa fa-plus btn-secondary">
+                                        className="fa fa-plus btn-secondary">
                                 </button>
                             </div>
                             <div className="input-group-append">
                                 <button
                                     onClick={this.updateModule}
-                                        className="fa fa-check btn-success">
+                                    className="fa fa-check btn-success">
                                 </button>
                             </div>
                         </div>
@@ -154,7 +155,7 @@ class ModuleList extends React.Component {
                                component={ModuleEditor}/>
                     </div>
                 </div>
-               {/* </div>*/}
+                {/* </div>*/}
 
 
             </Router>
@@ -171,7 +172,7 @@ class ModuleList extends React.Component {
                                        courseId={this.state.courseId}
                                        module={module}
                                        delete={this.deleteModule}
-                                        edit={this.setModuleTitle}/>
+                                       edit={this.setModuleTitle}/>
 
             });
         return (<ul className="list-group">{modules}</ul>);

@@ -1,5 +1,7 @@
-/*const LESSON_API_URL = "http://localhost:8080/api/course/CID/module/MID/lesson";
-const BASE_URL = "http://localhost:8080/api";*/
+/*
+const LESSON_API_URL = "http://localhost:8080/api/course/CID/module/MID/lesson";
+const BASE_URL = "http://localhost:8080/api";
+*/
 const LESSON_API_URL = "https://course-management-stc.herokuapp.com/api/course/CID/module/MID/lesson/";
 const BASE_URL= "https://course-management-stc.herokuapp.com/api";
 
@@ -33,6 +35,13 @@ export default class LessonServiceClient {
                 return response.json();
             })
     }
+
+    /*findLessonById(lessonID){
+        return fetch(BASE_URL + '/lesson/' + lessonId)
+            .then(function (response) {
+                return response.json();
+            });
+    }*/
 
     deleteLesson(lessonId) {
         return fetch(BASE_URL + '/lesson/' + lessonId, {

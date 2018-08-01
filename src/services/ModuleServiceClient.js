@@ -30,6 +30,15 @@ export default class ModuleService {
         { return response.json(); })
     }
 
+    findModuleById(moduleId)
+    {
+        return fetch(
+            BASE_MODULE_URL + "module/" +moduleId)
+            .then(function (response) {
+                return response.json();
+            })
+    }
+
     findAllModulesForCourse(courseId) {
         return fetch(
             MODULE_API_URL

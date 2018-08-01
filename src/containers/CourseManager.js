@@ -7,6 +7,7 @@ import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import {widgetReducer} from "../reducers/widgetReducer";
 import WidgetListContainer from "./widgets/WidgetListContainer";
+import LessonEditor from "./LessonEditor";
 
 /*import CourseCard from "../components/CourseCard";*/
 
@@ -32,6 +33,8 @@ class WhiteBoard extends React.Component {
                     <Route path="/course/:courseId/edit"
                            component={CourseEditor}>
                     </Route>
+
+
                     {/*<Route path="/course/:courseId/module/:moduleId/lesson/:lessonId/topic/:topicId"
                            component={WidgetListContainer}>
                     </Route>*/}

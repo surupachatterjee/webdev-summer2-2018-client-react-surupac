@@ -4,15 +4,10 @@ let initialState = {
     courseId: '',
     moduleId:'',
     lessonId:'',
-    topicId : '',
-    widgets: [
-        {title: 'Heading Widget', id: '1', widgetType: 'HEADING'},
-        {title: 'Paragraph Widget', id: '2', widgetType: 'PARAGRAPH'},
-        {title: 'List Widget', id: '3', widgetType: 'LIST', listItems:'',ordered:'ul'},
-        {title: 'Link Widget', id: '4', widgetType: 'LINK'},
-        {title: 'Image Widget', id: '5', widgetType: 'IMAGE'}
+    topicId : 0,
+    widgets: [],
+    preview:false,
 
-    ]
 };
 
 let widgetService = WidgetService.instance;
@@ -36,8 +31,13 @@ export const updateType = (widget,wdType) => {
 
 }
 
-export const widgetReducer = (state /*= initialState*/, action) => {
+export const widgetReducer = (state =initialState, action) => {
     switch (action.type) {
+        case 'SET_TOPICID' :
+            return{
+                ...state,
+                topicId:action.topicId
+            }
         case 'CHANGE_PREVIEW':
             console.log(state.preview)
             return{
@@ -58,18 +58,6 @@ export const widgetReducer = (state /*= initialState*/, action) => {
                 })
 
             };
-        case 'MOVEDOWN_WIDGET' :
-            fromIndex = state.widgets.findIndex((wdgt) => wdgt.id === action.widgetId);
-            toIndex = fromIndex+1;
-            return {
-                ...state,
-                widgets:[
-                    ...state.widgets.slice(0,fromIndex),
-                    updateOrder(state.widgets[toIndex],fromIndex),
-                    updateOrder(state.widgets[fromIndex],toIndex),
-                    ...state.widgets.slice(toIndex+1)
-                ]
-            };
         case 'MOVEUP_WIDGET' :
             fromIndex = state.widgets.findIndex((wdgt) => wdgt.id === action.widgetId);
             toIndex = fromIndex-1;
@@ -80,6 +68,18 @@ export const widgetReducer = (state /*= initialState*/, action) => {
                     updateOrder(state.widgets[fromIndex],toIndex),
                     updateOrder(state.widgets[toIndex],fromIndex),
                     ...state.widgets.slice(fromIndex+1)
+                ]
+            };
+        case 'MOVEDOWN_WIDGET' :
+            fromIndex = state.widgets.findIndex((wdgt) => wdgt.id === action.widgetId);
+            toIndex = fromIndex+1;
+            return {
+                ...state,
+                widgets:[
+                    ...state.widgets.slice(0,fromIndex),
+                    updateOrder(state.widgets[toIndex],fromIndex),
+                    updateOrder(state.widgets[fromIndex],toIndex),
+                    ...state.widgets.slice(toIndex+1)
                 ]
             };
         case 'SAVE_WIDGETS':
