@@ -1,6 +1,8 @@
 const TOPIC_API_URL = "https://course-management-stc.herokuapp.com/api/course/CID/module/MID/lesson/LID/topic";
 const BASE_URL ="https://course-management-stc.herokuapp.com/api/";
 
+//const BASE_URL ="http://localhost:8080/api/";
+
 let _singleton = Symbol();
 export default class TopicService {
     constructor(singletonToken) {
