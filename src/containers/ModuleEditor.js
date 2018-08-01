@@ -73,7 +73,7 @@ class ModuleEditor
         return (
             <div>
             {/*<h1>Module Editor</h1>*/}
-                <h4>{this.state.module.title}  - {this.state.courseId}- {this.state.moduleId}</h4>
+                <h4>{this.state.module.title}</h4>
                 <LessonTabs courseId = {this.state.courseId}
                             moduleId ={this.state.moduleId}/>
             </div>
