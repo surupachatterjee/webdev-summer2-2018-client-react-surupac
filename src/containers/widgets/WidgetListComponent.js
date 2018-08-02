@@ -85,11 +85,26 @@ class WidgetListComponent extends React.Component{
                         <button className="btn btn-success fa fa-plus float-right"
                                 onClick={() =>
                                 {
+                                    let defaultListType = '';
+                                    if (this.widgetType.value === 'LIST')
+                                        defaultListType = 'UNORDERED'
                                     let widget ={
                                         title : this.widgetTitle.value,
                                         id : -1* (this.props.widgets.length+1),
                                         widgetType:this.widgetType.value,
-                                        widgetOrder:0
+                                        widgetOrder:0,
+                                        listType:defaultListType,
+                                        name: '',
+                                        text:'',
+                                        className:'',
+                                        style:'',
+                                        width:'',
+                                        height:'',
+                                        size:'',
+                                        href:'',
+                                        src:'',
+                                        listItems:''
+
                                     }
                                     this.props.createWidget(widget)
                                     this.widgetTitle.value=''

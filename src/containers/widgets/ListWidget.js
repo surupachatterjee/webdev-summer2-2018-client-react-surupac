@@ -28,7 +28,7 @@ const ListWidget = ({widget, updateWidget, preview}) => {
                             widget.listType = ltype.value
                             updateWidget(widget)
                         }}>
-                    <option value="" selected disabled hidden>Choose List Type</option>
+                    {/*<option value="" selected disabled hidden>Choose List Type</option>*/}
                     <option value='UNORDERED'>Unordered List</option>
                     <option value='ORDERED'>Ordered List</option>
 
@@ -36,6 +36,8 @@ const ListWidget = ({widget, updateWidget, preview}) => {
                 </select>
                 <h4>Preview</h4>
             </div>}
+            {/*{!widget.listItems === '' &&*/}
+            <div>
             {widget.listType === '' &&
             <ul>
                 {widget.listItems.split('\n').map((item, index) => (
@@ -59,6 +61,7 @@ const ListWidget = ({widget, updateWidget, preview}) => {
                 )}
             </ul>
             }
+            </div>/*}*/
         </div>
     )
 };
