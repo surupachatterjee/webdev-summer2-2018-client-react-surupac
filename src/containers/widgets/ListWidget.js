@@ -36,7 +36,7 @@ const ListWidget = ({widget, updateWidget, preview}) => {
                 </select>
                 <h4>Preview</h4>
             </div>}
-            {/*{!widget.listItems === '' &&*/}
+
             <div>
             {widget.listType === '' &&
             <ul>
@@ -61,7 +61,7 @@ const ListWidget = ({widget, updateWidget, preview}) => {
                 )}
             </ul>
             }
-            </div>/*}*/
+            </div>
         </div>
     )
 };
